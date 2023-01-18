@@ -1,3 +1,5 @@
+// Created by Kenyon Geetings and Brenden Mudd
+
 import SwiftUI
 
 struct ContentView: View {
