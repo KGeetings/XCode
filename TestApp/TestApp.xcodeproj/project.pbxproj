@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		252B5253297854DF0055E5A3 /* HIITFit in Resources */ = {isa = PBXBuildFile; fileRef = 252B5252297854DE0055E5A3 /* HIITFit */; };
 		25B118362977196C00E0EAD4 /* TestAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25B118352977196C00E0EAD4 /* TestAppApp.swift */; };
 		25B118382977196C00E0EAD4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25B118372977196C00E0EAD4 /* ContentView.swift */; };
 		25B1183A2977196D00E0EAD4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 25B118392977196D00E0EAD4 /* Assets.xcassets */; };
@@ -14,6 +15,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		252B5252297854DE0055E5A3 /* HIITFit */ = {isa = PBXFileReference; lastKnownFileType = folder; name = HIITFit; path = ../HIITFit; sourceTree = "<group>"; };
 		25B118322977196C00E0EAD4 /* TestApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		25B118352977196C00E0EAD4 /* TestAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestAppApp.swift; sourceTree = "<group>"; };
 		25B118372977196C00E0EAD4 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -35,6 +37,7 @@
 		25B118292977196C00E0EAD4 = {
 			isa = PBXGroup;
 			children = (
+				252B5252297854DE0055E5A3 /* HIITFit */,
 				25B118342977196C00E0EAD4 /* TestApp */,
 				25B118332977196C00E0EAD4 /* Products */,
 			);
@@ -125,6 +128,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				252B5253297854DF0055E5A3 /* HIITFit in Resources */,
 				25B1183D2977196D00E0EAD4 /* Preview Assets.xcassets in Resources */,
 				25B1183A2977196D00E0EAD4 /* Assets.xcassets in Resources */,
 			);
