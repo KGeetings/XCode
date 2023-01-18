@@ -2,8 +2,11 @@ import SwiftUI
 
 struct ContentView: View {
   var body: some View {
-    Text("Hello, world!")
-      .padding()
+      TabView {
+          Text("Welcome")
+          Text("Exercise 1")
+          Text("Exercise 2")
+      }
   }
 }
 
