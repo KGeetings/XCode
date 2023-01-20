@@ -1,12 +1,15 @@
+// Created by Kenyon Geetings and Brenden Mudd
+
 import SwiftUI
 
 struct ContentView: View {
   var body: some View {
       TabView {
           WelcomeView()
-          ForEach(0..<4) {index in ExerciseView(index: index)}
-          Text("Exercise 2")
+          ForEach(0..<4) {number in 
+            ExerciseView(index: number)}
       }
+      .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
   }
 }
 

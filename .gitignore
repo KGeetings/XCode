@@ -1,2 +1,4 @@
-XCode.xcworkspace/xcuserdata/muddb1.xcuserdatad/UserInterfaceState.xcuserstate
-XCode.xcworkspace/xcuserdata/muddb1.xcuserdatad/UserInterfaceState.xcuserstate
+# Xcode
+**/UserInterfaceState.xcuserstate
+# Ignore all xcuserdata directories
+xcuserdata/

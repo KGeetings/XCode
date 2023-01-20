@@ -5,9 +5,6 @@
       location = "group:HIITFit/HIITFit.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:TestApp/TestApp.xcodeproj">
-   </FileRef>
-   <FileRef
       location = "group:FirstApp/FirstApp.xcodeproj">
    </FileRef>
 </Workspace>
