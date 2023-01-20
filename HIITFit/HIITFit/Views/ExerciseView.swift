@@ -1,4 +1,5 @@
 import SwiftUI
+import AVKit
 
 struct ExerciseView: View {
     let videoNames = ["squat", "step-up", "burpee", "sun-salute"]
@@ -7,7 +8,7 @@ struct ExerciseView: View {
     var body: some View {
         VStack {
             HeaderView(exerciseName: exerciseNames[index])
-            Text("Video player")
+            VideoPlayer(player: AVPlayer(url: url))
             Text("Timer")
             Text("Start/Done button")
             Text("Rating")
