@@ -3,5 +3,5 @@
 # Ignore all xcuserdata directories
 xcuserdata/
 .DS_Store
-#Discard .plist files
-*.plist
+#Discard Xcode directory
+/XCode.xcworkspace
