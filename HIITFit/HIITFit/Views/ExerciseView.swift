@@ -23,7 +23,8 @@ struct ExerciseView: View {
                 Button("Start/Done") { }
                     .font(.title3)
                     .padding()
-                Text("Rating")
+                RatingView()
+                    .padding()
                 Spacer()
                 Button("History") { }
                     .padding(.bottom)
