@@ -12,7 +12,20 @@ struct HistoryView: View {
             Text("History")
                 .font(.title)
                 .padding()
-            
+            Form {
+Section(
+header:
+Text(today.formatted(as: "MMM d"))
+.font(.headline)) {
+// Section content
+}
+Section(
+header:
+Text(yesterday.formatted(as: "MMM d"))
+.font(.headline)) {
+// Section content
+}
+}
         }
     }
 }
