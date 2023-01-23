@@ -6,9 +6,9 @@ struct ContentView: View {
   var body: some View {
       TabView {
           WelcomeView()
-          ForEach(0..<4) {number in 
+          ForEach(0 ..< Exercise.exercises.count) { number in
             ExerciseView(index: number)}
-//          init(Data, id: KeyPath<Data.Element, ID>, content: (Data.Element) -> Content)
+
       }
       .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
   }
