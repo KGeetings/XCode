@@ -22,6 +22,7 @@
 		CD30C94925147AEF0049DB93 /* sun-salute.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = CD30C94525147AEF0049DB93 /* sun-salute.mp4 */; };
 		FD331BE7297EEE5000430B45 /* RatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD331BE6297EEE5000430B45 /* RatingView.swift */; };
 		FD331BE9297EEFD100430B45 /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD331BE8297EEFD100430B45 /* HistoryView.swift */; };
+		FD331BEB297EFA8000430B45 /* SuccessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD331BEA297EFA8000430B45 /* SuccessView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		CD30C94525147AEF0049DB93 /* sun-salute.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "sun-salute.mp4"; sourceTree = "<group>"; };
 		FD331BE6297EEE5000430B45 /* RatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingView.swift; sourceTree = "<group>"; };
 		FD331BE8297EEFD100430B45 /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
+		FD331BEA297EFA8000430B45 /* SuccessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuccessView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +63,7 @@
 				CD30C925251474DC0049DB93 /* ContentView.swift */,
 				FD331BE8297EEFD100430B45 /* HistoryView.swift */,
 				252B5254297858F50055E5A3 /* WelcomeView.swift */,
+				FD331BEA297EFA8000430B45 /* SuccessView.swift */,
 				252B5256297859050055E5A3 /* ExerciseView.swift */,
 				FD331BE6297EEE5000430B45 /* RatingView.swift */,
 				487E44D8297B19DD0015D35A /* HeaderView.swift */,
@@ -216,6 +219,7 @@
 			files = (
 				252B5257297859050055E5A3 /* ExerciseView.swift in Sources */,
 				252B5255297858F50055E5A3 /* WelcomeView.swift in Sources */,
+				FD331BEB297EFA8000430B45 /* SuccessView.swift in Sources */,
 				CD30C926251474DC0049DB93 /* ContentView.swift in Sources */,
 				FD331BE7297EEE5000430B45 /* RatingView.swift in Sources */,
 				CD30C93F25147A8C0049DB93 /* DateExtension.swift in Sources */,
