@@ -2,7 +2,7 @@
 **/UserInterfaceState.xcuserstate
 # Ignore all xcuserdata directories
 xcuserdata/
-.DS_Store
+**.DS_Store
 #Discard Xcode directory
 XCode.xcworkspace/xcshareddata
 XCode.xcworkspace/xcuserdata
