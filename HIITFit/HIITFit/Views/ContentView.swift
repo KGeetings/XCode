@@ -8,6 +8,7 @@ struct ContentView: View {
           WelcomeView()
           ForEach(0..<4) {number in 
             ExerciseView(index: number)}
+//          init(Data, id: KeyPath<Data.Element, ID>, content: (Data.Element) -> Content)
       }
       .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
   }
