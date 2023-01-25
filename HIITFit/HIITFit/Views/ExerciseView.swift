@@ -3,7 +3,7 @@ import AVKit
 
 struct ExerciseView: View {
     @Binding var selectedTab: Int
-    @State private var rating = 0
+    @AppStorage("rating") private var rating = 0
     @State private var showSuccess = false
 
     let index: Int
