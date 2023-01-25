@@ -5,6 +5,9 @@ struct ExerciseView: View {
     @Binding var selectedTab: Int
     let index: Int
     let interval: TimeInterval = 30
+    var lastExercise: Bool {
+        index + 1 == Exercise.exercises.count
+    }
     var body: some View {
         GeometryReader { geometry in
             VStack {
@@ -21,7 +24,9 @@ struct ExerciseView: View {
                     .font(.system(size: 90))
                 HStack(spacing: 150) {
                     Button("Start Exercise") {}
-                    Button("Done") {}
+                    Button("Done") {
+                        selectedTab = lastExercise ? 9 : selectedTab + 1
+                    }
                 }
                     .font(.title3)
                     .padding()
