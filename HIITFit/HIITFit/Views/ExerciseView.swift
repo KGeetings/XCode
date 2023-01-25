@@ -6,7 +6,8 @@ struct ExerciseView: View {
     @State private var rating = 0
     @State private var showSuccess = false
     let index: Int
-    let interval: TimeInterval = 30
+    @State private var timerDone = false
+    @State private var showTimer = false
     var lastExercise: Bool {
         index + 1 == Exercise.exercises.count
     }
@@ -24,17 +25,23 @@ struct ExerciseView: View {
                     Text("Couldn't find \(Exercise.exercises[index].videoName).mp4")
                         .foregroundColor(.red)
                 }
-                Text(Date().addingTimeInterval(interval), style: .timer)
-                    .font(.system(size: 90))
+                if showTimer {
+                    TimerView(timerDone: $timerDone)
+                }
                 HStack(spacing: 150) {
-                    Button("Start Exercise") {}
+                    Button("Start Exercise") {
+                        showTimer.toggle()
+                    }
                     Button("Done") {
+                        timerDone = false
+                        showTimer.toggle()
                         if lastExercise {
                         showSuccess.toggle()
                         } else {
                         selectedTab += 1
                         }
                     }
+                    .disabled(!timerDone)
                     .sheet(isPresented: $showSuccess) {
                         SuccessView(selectedTab: $selectedTab)
                     }
