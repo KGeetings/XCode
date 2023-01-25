@@ -3,15 +3,15 @@
 import SwiftUI
 
 struct ContentView: View {
-  var body: some View {
-      TabView {
-          WelcomeView()
-          ForEach(0 ..< Exercise.exercises.count) { number in
-            ExerciseView(index: number)}
-
-      }
-      .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
-  }
+    @State private var selectedTab = 9
+    var body: some View {
+        TabView {
+            WelcomeView()
+            ForEach(0 ..< Exercise.exercises.count) { number in
+                ExerciseView(index: number)}
+        }
+        .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
+    }
 }
 
 struct ContentView_Previews: PreviewProvider {
