@@ -23,35 +23,40 @@ struct RatingView: View {
         }
     }
     
-    var body: some View {
-        HStack {
-            ForEach(1 ..< maximumRating + 1) { index in
-                Image(systemName: "waveform.path.ecg")
-                    .foregroundColor(
-                        index > rating ? offColor : onColor) // 4
-                    updateRating(index: index)
-                    // 1
-                    .onAppear {
-                        // 2
-                        let index = ratings.index(
-                            ratings.startIndex,
-                            offsetBy: exerciseIndex)
-                        // 3
-                        let character = ratings[index]
-                        // 4
-                        rating = character.wholeNumberValue ?? 0
-                    }
-            }
-        }
-        .font(.largeTitle)
-    }
-
     func updateRating(index: Int) {
         rating = index
         let index = ratings.index(
             ratings.startIndex,
             offsetBy: exerciseIndex)
         ratings.replaceSubrange(index...index, with: String(rating))
+    }
+    
+    fileprivate func convertRating() {
+        let index = ratings.index(
+            ratings.startIndex,
+            offsetBy: exerciseIndex)
+        let character = ratings[index]
+        rating = character.wholeNumberValue ?? 0
+    }
+    
+    var body: some View {
+        HStack {
+            ForEach(1 ..< maximumRating + 1, id: \.self) { index in
+                Image(systemName: "waveform.path.ecg")
+                    .foregroundColor(
+                        index > rating ? offColor : onColor)
+                    .onTapGesture {
+                        updateRating(index: index)
+                    }
+                    .onAppear {
+                        convertRating()
+                    }
+                    .onChange(of: ratings) { _ in
+                        convertRating()
+                    }
+            }
+        }
+        .font(.largeTitle)
     }
 }
 
