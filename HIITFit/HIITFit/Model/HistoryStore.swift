@@ -34,19 +34,35 @@ class HistoryStore: ObservableObject {
         return documentsURL.appendingPathComponent("history.plist")
     }
     
-    func load() throws {}
+    func load() throws {
+        guard let dataURL = getURL() else {
+            throw FileError.urlFailure
+        }
+        do {
+            let data = try Data(contentsOf: dataURL)
+            let plistData = try PropertyListSerialization.propertyList(from: data, options: [], format: nil)
+            let convertedPlistData = plistData as? [[Any]] ?? []
+            exerciseDays = convertedPlistData.map {
+                ExerciseDay(date: $0[1] as? Date ?? Date(),
+                exercises: $0[2] as? [String] ?? [])
+            }
+        } catch {
+            throw FileError.loadFailure
+        }
+    }
     
     func save() throws {
         guard let dataURL = getURL() else {
             throw FileError.urlFailure
         }
-        var plistData: [[Any]] = []
-        for exerciseDay in exerciseDays {
-            plistData.append(([
-                exerciseDay.id.uuidString,
-                exerciseDay.date,
-                exerciseDay.exercises
-            ]))
+        let plistData = exerciseDays.map {
+            [$0.id.uuidString, $0.date, $0.exercises]
+        }
+        do {
+            let data = try PropertyListSerialization.data(fromPropertyList: plistData, format: .binary, options: .zero)
+            try data.write(to: dataURL, options: .atomic)
+        } catch {
+            throw FileError.saveFailure
         }
     }
     
@@ -61,5 +77,10 @@ class HistoryStore: ObservableObject {
                 at: 0)
         }
         print("History: ", exerciseDays)
+        do {
+            try save()
+        } catch {
+            fatalError(error.localizedDescription)
+        }
     }
 }
