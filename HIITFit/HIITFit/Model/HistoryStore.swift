@@ -38,6 +38,10 @@ class HistoryStore: ObservableObject {
         guard let dataURL = getURL() else {
             throw FileError.urlFailure
         }
+        // Check if file exists, if not, it's probably the first time the app is run
+        guard FileManager.default.fileExists(atPath: dataURL.path) else {
+            return
+        }
         do {
             let data = try Data(contentsOf: dataURL)
             let plistData = try PropertyListSerialization.propertyList(from: data, options: [], format: nil)
