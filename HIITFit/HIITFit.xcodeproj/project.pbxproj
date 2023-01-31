@@ -21,6 +21,7 @@
 		CD30C94725147AEF0049DB93 /* burpee.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = CD30C94325147AEF0049DB93 /* burpee.mp4 */; };
 		CD30C94825147AEF0049DB93 /* squat.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = CD30C94425147AEF0049DB93 /* squat.mp4 */; };
 		CD30C94925147AEF0049DB93 /* sun-salute.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = CD30C94525147AEF0049DB93 /* sun-salute.mp4 */; };
+		FD2BEC822989881700F7E3A5 /* RaisedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD2BEC812989881700F7E3A5 /* RaisedButton.swift */; };
 		FD331BE7297EEE5000430B45 /* RatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD331BE6297EEE5000430B45 /* RatingView.swift */; };
 		FD331BE9297EEFD100430B45 /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD331BE8297EEFD100430B45 /* HistoryView.swift */; };
 		FD331BEB297EFA8000430B45 /* SuccessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD331BEA297EFA8000430B45 /* SuccessView.swift */; };
@@ -47,6 +48,7 @@
 		CD30C94325147AEF0049DB93 /* burpee.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = burpee.mp4; sourceTree = "<group>"; };
 		CD30C94425147AEF0049DB93 /* squat.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = squat.mp4; sourceTree = "<group>"; };
 		CD30C94525147AEF0049DB93 /* sun-salute.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "sun-salute.mp4"; sourceTree = "<group>"; };
+		FD2BEC812989881700F7E3A5 /* RaisedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RaisedButton.swift; sourceTree = "<group>"; };
 		FD331BE6297EEE5000430B45 /* RatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingView.swift; sourceTree = "<group>"; };
 		FD331BE8297EEFD100430B45 /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
 		FD331BEA297EFA8000430B45 /* SuccessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuccessView.swift; sourceTree = "<group>"; };
@@ -72,6 +74,7 @@
 			isa = PBXGroup;
 			children = (
 				CD30C925251474DC0049DB93 /* ContentView.swift */,
+				FD2BEC812989881700F7E3A5 /* RaisedButton.swift */,
 				48657A632981E25500C5E5BE /* TimerView.swift */,
 				FD331BE8297EEFD100430B45 /* HistoryView.swift */,
 				252B5254297858F50055E5A3 /* WelcomeView.swift */,
@@ -254,6 +257,7 @@
 				CD30C93F25147A8C0049DB93 /* DateExtension.swift in Sources */,
 				FD331BED297EFC0E00430B45 /* Exercise.swift in Sources */,
 				CD30C924251474DC0049DB93 /* HIITFitApp.swift in Sources */,
+				FD2BEC822989881700F7E3A5 /* RaisedButton.swift in Sources */,
 				CD30C94025147A8C0049DB93 /* ImageExtension.swift in Sources */,
 				FD331BE9297EEFD100430B45 /* HistoryView.swift in Sources */,
 				487E44D9297B19DD0015D35A /* HeaderView.swift in Sources */,
