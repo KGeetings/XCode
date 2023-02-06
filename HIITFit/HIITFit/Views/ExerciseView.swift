@@ -54,7 +54,10 @@ struct ExerciseView: View {
                 Spacer()
                 RatingView(exerciseIndex: index) // Move RatingView below Spacer
                     .padding()
-                Button(NSLocalizedString("History", comment: "view user activity")) { }
+                historyButton
+                    .sheet(isPresented: $showHistory) {
+                        HistoryView(showHistory: $showHistory)
+                    }
                     .padding(.bottom)
             }
         }
@@ -63,6 +66,19 @@ struct ExerciseView: View {
         RaisedButton(buttonText: "Start Exercise") {
             showTimer.toggle()
         }
+    }
+
+    var historyButton: some View {
+        Button(
+        action: {
+            showHistory = true
+        }, label: {
+            Text("History")
+            .fontWeight(.bold)
+            .padding([.leading, .trailing], 5)
+        })
+        .padding(.bottom, 10)
+        .buttonStyle(EmbossedButtonStyle())
     }
 }
 
