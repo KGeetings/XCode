@@ -11,6 +11,7 @@ struct WelcomeView: View {
             selectedTab: $selectedTab,
             titleText: "Welcome")
             Spacer()
+            //container view
             ContainerView {
             VStack {
                 WelcomeView.images
