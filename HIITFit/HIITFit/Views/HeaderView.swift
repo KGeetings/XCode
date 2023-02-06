@@ -8,7 +8,7 @@ struct HeaderView: View {
             Text(titleText)
                 .font(.largeTitle)
             HStack { // 2
-                ForEach(0 ..< Exercise.exercises.count) { index in // 3
+                ForEach(0 ..< Exercise.exercises.count, id: \.self) { index in // 3
                     let fill = index == selectedTab ? ".fill" : ""
                     Image(systemName: "\(index + 1).circle\(fill)") // 4
                         .onTapGesture {
