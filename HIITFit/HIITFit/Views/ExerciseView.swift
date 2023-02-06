@@ -4,6 +4,7 @@ import AVKit
 struct ExerciseView: View {
     @Binding var selectedTab: Int
     @State private var showSuccess = false
+    @State private var showHistory = false
 
     let index: Int
 
