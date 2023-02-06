@@ -1,11 +1,17 @@
 import SwiftUI
 
 struct RaisedButton: View {
+  let buttonText: String
+  let action: () -> Void
+
   var body: some View {
-    Button(action: {}, label: {
-      Text("Get Started")
-            .raisedButtonTextStyle()
+    Button(action: {
+      action()
+    }, label: {
+      Text(buttonText)
+        .raisedButtonTextStyle()
     })
+    .buttonStyle(RaisedButtonStyle())
   }
 }
 
