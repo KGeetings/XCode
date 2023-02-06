@@ -30,9 +30,7 @@ struct ExerciseView: View {
                         .foregroundColor(.red)
                 }
                 HStack(spacing: 150) {
-                    Button("Start Exercise") { // Move buttons above TimerView
-                        showTimer.toggle()
-                    }
+                    startExerciseButton
                     Button("Done") {
                         history.addDoneExercise(Exercise.exercises[index].exerciseName)
                         timerDone = false
@@ -59,6 +57,11 @@ struct ExerciseView: View {
                 Button(NSLocalizedString("History", comment: "view user activity")) { }
                     .padding(.bottom)
             }
+        }
+    }
+    var startExerciseButton: some View {
+        RaisedButton(buttonText: "Start Exercise") {
+            showTimer.toggle()
         }
     }
 }

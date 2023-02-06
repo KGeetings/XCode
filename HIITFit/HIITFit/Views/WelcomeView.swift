@@ -28,14 +28,15 @@ struct WelcomeView: View {
                         .resizedToFill(width: 240, height: 240)
                         .clipShape(Circle())
                 }
-                Button(action: { selectedTab = 0 }) {
-                  Text("Get Started")
-                    .raisedButtonTextStyle()
-                }
-                .buttonStyle(RaisedButtonStyle())
-                .padding()
+                getStartedButton
             }
         }
+    }
+    var getStartedButton: some View {
+        RaisedButton(buttonText: "Get Started") {
+            selectedTab = 0
+        }
+        .padding()
     }
 }
 
