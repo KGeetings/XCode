@@ -13,19 +13,9 @@ enum FileError: Error {
 
 class HistoryStore: ObservableObject {
   @Published var exerciseDays: [ExerciseDay] = []
-    init(withChecking: Bool) throws  {
-      #if DEBUG
-      //createDevData()
-      #endif
-        print("Initializing HistoryStore")
-        do {
-            try load()
-        } catch {
-                throw error
-            }
+    init() {
+        try? load()
     }
-    
-    init() {}
     
     func getURL() -> URL? {
         guard let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {

@@ -1,4 +1,4 @@
-// Created by Kenyon Geetings and Brenden Mudd
+// Created by Kenyon Geetings
 
 import SwiftUI
 
