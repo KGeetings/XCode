@@ -12,7 +12,7 @@ enum FileError: Error {
 }
 
 class HistoryStore: ObservableObject {
-  @Published var exerciseDays: [ExerciseDay] = []
+    @Published var exerciseDays: [ExerciseDay] = []
     init() {
         try? load()
     }
@@ -38,7 +38,7 @@ class HistoryStore: ObservableObject {
             let convertedPlistData = plistData as? [[Any]] ?? []
             exerciseDays = convertedPlistData.map {
                 ExerciseDay(date: $0[1] as? Date ?? Date(),
-                exercises: $0[2] as? [String] ?? [])
+                            exercises: $0[2] as? [String] ?? [])
             }
         } catch {
             throw FileError.loadFailure

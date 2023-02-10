@@ -9,8 +9,8 @@ struct HistoryView: View {
             Button(action: {showHistory.toggle()}) {
                 Image(systemName: "xmark.circle")
             }
-                .font(.title)
-                .padding(.trailing)
+            .font(.title)
+            .padding(.trailing)
             VStack {
                 Text( NSLocalizedString("History", comment: "view user activity"))
                     .font(.title)
@@ -19,7 +19,7 @@ struct HistoryView: View {
                     ForEach(history.exerciseDays) { day in
                         Section(
                             header:
-                            Text(day.date.formatted(as: "MMM d"))
+                                Text(day.date.formatted(as: "MMM d"))
                                 .font(.headline)
                         ) {
                             ForEach(day.exercises, id: \.self) { exercise in

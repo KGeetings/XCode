@@ -5,24 +5,24 @@ struct ExerciseView: View {
     @Binding var selectedTab: Int
     @State private var showSuccess = false
     @State private var showHistory = false
-
+    
     let index: Int
-
+    
     @State private var timerDone = false
     @State private var showTimer = false
     @EnvironmentObject var history: HistoryStore
-
+    
     var lastExercise: Bool {
         index + 1 == Exercise.exercises.count
     }
-
+    
     var body: some View {
         GeometryReader { geometry in
             VStack {
                 HeaderView(
                     selectedTab: $selectedTab,
                     titleText: Exercise.exercises[index].exerciseName)
-                    .padding(.bottom)
+                .padding(.bottom)
                 if let url = Bundle.main.url(forResource: Exercise.exercises[index].videoName, withExtension: "mp4") {
                     VideoPlayer(player: AVPlayer(url: url))
                         .frame(height: geometry.size.height * 0.45)
@@ -68,16 +68,16 @@ struct ExerciseView: View {
             showTimer.toggle()
         }
     }
-
+    
     var historyButton: some View {
         Button(
-        action: {
-            showHistory = true
-        }, label: {
-            Text("History")
-            .fontWeight(.bold)
-            .padding([.leading, .trailing], 5)
-        })
+            action: {
+                showHistory = true
+            }, label: {
+                Text("History")
+                    .fontWeight(.bold)
+                    .padding([.leading, .trailing], 5)
+            })
         .padding(.bottom, 10)
         .buttonStyle(EmbossedButtonStyle())
     }

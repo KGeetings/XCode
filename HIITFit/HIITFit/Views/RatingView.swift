@@ -8,7 +8,7 @@ struct RatingView: View {
     
     let onColor = Color.red // 3
     let offColor = Color.gray
-
+    
     // 1
     init(exerciseIndex: Int) {
         self.exerciseIndex = exerciseIndex
@@ -43,23 +43,23 @@ struct RatingView: View {
         HStack {
             ForEach(1 ..< maximumRating + 1, id: \.self) { index in
                 Button(action: {
-                updateRating(index: index)
+                    updateRating(index: index)
                 }, label: {
-                Image(systemName: "waveform.path.ecg")
-                    .foregroundColor(
-                    index > rating ? offColor : onColor)
-                    .font(.body)
+                    Image(systemName: "waveform.path.ecg")
+                        .foregroundColor(
+                            index > rating ? offColor : onColor)
+                        .font(.body)
                 })
                 .buttonStyle(EmbossedButtonStyle(buttonShape: .round))
                 .onChange(of: ratings) { _ in
-                convertRating()
+                    convertRating()
                 }
                 .onAppear {
-                convertRating()
+                    convertRating()
                 }
             }
-            }
-    .font(.largeTitle)
+        }
+        .font(.largeTitle)
     }
 }
 

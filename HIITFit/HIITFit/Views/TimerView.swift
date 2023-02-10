@@ -8,7 +8,7 @@ struct TimerView: View {
         on: .main,
         in: .common)
         .autoconnect() // 4
-
+    
     var body: some View {
         Text("\(timeRemaining)") // 5
             .font(.system(size: 90, design: .rounded))
