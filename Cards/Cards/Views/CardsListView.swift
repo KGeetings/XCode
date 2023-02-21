@@ -2,7 +2,7 @@ import SwiftUI
 
 struct CardsListView: View {
     @EnvironmentObject var viewState: ViewState
-
+    
     var body: some View {
         ScrollView(showsIndicators: false) {
             VStack {
@@ -20,6 +20,6 @@ struct CardsListView: View {
 struct CardsListView_Previews: PreviewProvider {
     static var previews: some View {
         CardsListView()
-        .environmentObject(ViewState())
+            .environmentObject(ViewState())
     }
 }

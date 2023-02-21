@@ -2,7 +2,7 @@ import SwiftUI
 
 struct SingleCardView: View {
     @EnvironmentObject var viewState: ViewState
-
+    
     var body: some View {
         NavigationView {
             CardDetailView()
