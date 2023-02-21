@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:Cards/Cards.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:TIL/TIL.xcodeproj">
    </FileRef>
    <FileRef
