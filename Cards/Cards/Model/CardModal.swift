@@ -1,8 +1,5 @@
-//
-//  CardModal.swift
-//  Cards
-//
-//  Created by Kenyon on 2/21/23.
-//
-
 import Foundation
+
+enum CardModal {
+    case photoPicker, framePicker, stickerPicker, textPicker
+}

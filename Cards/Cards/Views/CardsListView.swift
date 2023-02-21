@@ -1,20 +1,25 @@
-//
-//  CardsListView.swift
-//  Cards
-//
-//  Created by Kenyon on 2/21/23.
-//
-
 import SwiftUI
 
 struct CardsListView: View {
+    @EnvironmentObject var viewState: ViewState
+
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ScrollView(showsIndicators: false) {
+            VStack {
+                ForEach(0..<10) { _ in
+                    CardThumbnailView()
+                        .onTapGesture {
+                            viewState.showAllCards.toggle()
+                        }
+                }
+            }
+        }
     }
 }
 
 struct CardsListView_Previews: PreviewProvider {
     static var previews: some View {
         CardsListView()
+        .environmentObject(ViewState())
     }
 }
