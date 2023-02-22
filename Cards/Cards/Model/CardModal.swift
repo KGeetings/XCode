@@ -5,5 +5,5 @@ enum CardModal: CaseIterable {
 }
 
 extension CardModal: Identifiable {
-    var id: String { self }
+    var id: Self { self }
 }
