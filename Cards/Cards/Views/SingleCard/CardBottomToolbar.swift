@@ -28,17 +28,10 @@ struct CardBottomToolbar: View {
     
     var body: some View {
         HStack {
-            Button(action: { cardModal = .photoPicker }) {
-                ToolbarButtonView(modal: .photoPicker)
-            }
-            Button(action: { cardModal = .framePicker }) {
-                ToolbarButtonView(modal: .framePicker)
-            }
-            Button(action: { cardModal = .stickerPicker }) {
-                ToolbarButtonView(modal: .stickerPicker)
-            }
-            Button(action: { cardModal = .textPicker }) {
-                ToolbarButtonView(modal: .textPicker)
+            ForEach(CardModal.allCases, id: \.self) { modal in
+                Button(action: { cardModal = modal }) {
+                    ToolbarButtonView(modal: modal)
+                }
             }
         }
     }
