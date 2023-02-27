@@ -1,9 +1,8 @@
 import Foundation
 
-enum CardModal: CaseIterable {
-    case photoPicker, framePicker, stickerPicker, textPicker
-}
-
-extension CardModal: Identifiable {
-    var id: Self { self }
+enum CardModal: Identifiable {
+  var id: Int {
+    hashValue
+  }
+  case photoPicker, framePicker, stickerPicker, textPicker
 }

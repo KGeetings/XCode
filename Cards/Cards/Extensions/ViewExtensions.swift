@@ -1,8 +1,7 @@
-//
-//  ViewExtensions.swift
-//  Cards
-//
-//  Created by Kenyon on 2/27/23.
-//
+import SwiftUI
 
-import Foundation
+extension View {
+  func resizableView(transform: Binding<Transform>) -> some View {
+    return modifier(ResizableView(transform: transform))
+  }
+}

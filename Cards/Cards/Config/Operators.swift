@@ -1,8 +1,14 @@
-//
-//  Operators.swift
-//  Cards
-//
-//  Created by Kenyon on 2/27/23.
-//
+import SwiftUI
 
-import Foundation
+func + (left: CGSize, right: CGSize) -> CGSize {
+  CGSize(
+    width: left.width + right.width,
+    height: left.height + right.height)
+}
+
+func * (left: CGSize, right: CGFloat) -> CGSize {
+  CGSize(
+    width: left.width * right,
+    height: left.height * right
+  )
+}

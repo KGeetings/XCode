@@ -1,8 +1,11 @@
-//
-//  ColorExtensions.swift
-//  Cards
-//
-//  Created by Kenyon on 2/27/23.
-//
+import SwiftUI
 
-import Foundation
+extension Color {
+  static let colors: [Color] = [
+    .green, .red, .blue, .gray, .yellow, .pink, .orange, .purple
+  ]
+
+  static func random() -> Color {
+    colors.randomElement() ?? .black
+  }
+}
