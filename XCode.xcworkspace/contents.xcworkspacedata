@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:Landmarks/Landmarks.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:MedalistInventory/MedalistInventory.xcodeproj">
    </FileRef>
    <FileRef
