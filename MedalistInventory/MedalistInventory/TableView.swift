@@ -9,18 +9,62 @@ import SwiftUI
 
 struct TableView: View {
     @State var tableData = [TableData]()
+    @State var searchText = ""
+    @State var sortAscending = true
+    
+    var sortedData: [TableData] {
+        tableData.sorted { (data1, data2) -> Bool in
+            if sortAscending {
+                return data1.material < data2.material
+            } else {
+                return data1.material > data2.material
+            }
+        }
+    }
+    var filteredData: [TableData] {
+        if searchText.isEmpty {
+            return tableData
+        } else {
+            return tableData.filter { data in
+                data.material.localizedCaseInsensitiveContains(searchText) ||
+                data.thickness.localizedCaseInsensitiveContains(searchText)
+            }
+        }
+    }
     
     var body: some View {
         NavigationView {
-            List(tableData, id: \.id) { data in
-                NavigationLink(destination: DetailView(tableData: data)) {
-                    VStack(alignment: .leading) {
-                        Text("\(data.material) - \(data.thickness)")
-                            .font(.headline)
-                        Text("\(data.length) x \(data.width) in")
-                            .font(.subheadline)
-                        Text("Qty: \(data.quantity)")
-                            .font(.subheadline)
+            Form {
+                Section(header: Text("Search")) {
+                    TextField("Search", text: $searchText)
+                }
+                Section(header: Text("Sort")) {
+                    Picker("Sort by", selection: $sortAscending) {
+                        Text("Material A-Z").tag(true)
+                        Text("Material Z-A").tag(false)
+                    }
+                    .pickerStyle(SegmentedPickerStyle())
+                }
+                ForEach(filteredData) { data in
+                    NavigationLink(destination: DetailView(tableData: data)) {
+                        VStack(alignment: .leading) {
+                            Text("\(data.material) - \(data.thickness)")
+                                .font(.headline)
+                            HStack {
+                                Text("Size:")
+                                    .font(.subheadline)
+                                Text("\(data.length) x \(data.width) in")
+                                    .font(.subheadline)
+                                    .foregroundColor(.secondary)
+                            }
+                            HStack {
+                                Text("Qty:")
+                                    .font(.subheadline)
+                                Text("\(data.quantity)")
+                                    .font(.subheadline)
+                                    .foregroundColor(.secondary)
+                            }
+                        }
                     }
                 }
             }
