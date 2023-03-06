@@ -29,27 +29,38 @@ struct TableView: View {
         .onAppear(perform: loadData)
     }
     
+    // http://10.0.2.3/table-data.php
     func loadData() {
-        guard let url = URL(string: "http://10.0.2.3/table-data.php") else {
+        guard let url = URL(string: "http://localhost/table_data.php") else {
             print("Invalid URL")
-            
             return
         }
         
-        let task = URLSession.shared.dataTask(with: url) { data, response, error in
+        let request = URLRequest(url: url)
+        
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
             guard let data = data else {
                 print("No data found: \(error?.localizedDescription ?? "Unknown error")")
-                
                 return
             }
             
-            if let decodedData = try? JSONDecoder().decode([TableData].self, from: data) {
+            guard let httpResponse = response as? HTTPURLResponse else {
+                print("Invalid response")
+                return
+            }
+            
+            guard (200...299).contains(httpResponse.statusCode) else {
+                print("HTTP Error: \(httpResponse.statusCode)")
+                return
+            }
+            
+            do {
+                let decodedData = try JSONDecoder().decode([TableData].self, from: data)
                 DispatchQueue.main.async {
                     self.tableData = decodedData
                 }
-            } else {
-                print("Invalid response from server")
-                
+            } catch {
+                print("Error decoding JSON: \(error.localizedDescription)")
             }
         }
         
