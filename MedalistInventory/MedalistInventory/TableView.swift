@@ -32,14 +32,14 @@ struct TableView: View {
     func loadData() {
         guard let url = URL(string: "http://10.0.2.3/table-data.php") else {
             print("Invalid URL")
-            throw Error.self
+            
             return
         }
         
         let task = URLSession.shared.dataTask(with: url) { data, response, error in
             guard let data = data else {
                 print("No data found: \(error?.localizedDescription ?? "Unknown error")")
-                throw Error.self
+                
                 return
             }
             
@@ -49,7 +49,7 @@ struct TableView: View {
                 }
             } else {
                 print("Invalid response from server")
-                throw Error.self
+                
             }
         }
         
@@ -99,9 +99,4 @@ struct TableData: Codable, Identifiable {
     let width: Double
     let quantity: Int
     let allocated: Int
-}
-
-enum Error: Swift.Error {
-    case invalidURL
-    case invalidResponse
 }
