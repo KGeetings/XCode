@@ -31,7 +31,7 @@ struct TableView: View {
     
     // http://10.0.2.3/table-data.php
     func loadData() {
-        guard let url = URL(string: "http://localhost/table_data.php") else {
+        guard let url = URL(string: "http://10.0.2.3/table-data.php") else {
             print("Invalid URL")
             return
         }
@@ -98,16 +98,16 @@ struct DetailView: View {
 
 struct DetailView_Previews: PreviewProvider {
     static var previews: some View {
-        DetailView(tableData: TableData(id: 1, material: "Aluminum", thickness: "0.12 (11GA)", length: 120, width: 60, quantity: 10, allocated: 1))
+        DetailView(tableData: TableData(id: "1", material: "Aluminum", thickness: "0.12 (11GA)", length: "120", width: "60", quantity: "10", allocated: "1"))
     }
 }
 
 struct TableData: Codable, Identifiable {
-    let id: Int
+    let id: String
     let material: String
     let thickness: String
-    let length: Double
-    let width: Double
-    let quantity: Int
-    let allocated: Int
+    let length: String
+    let width: String
+    let quantity: String
+    let allocated: String
 }
