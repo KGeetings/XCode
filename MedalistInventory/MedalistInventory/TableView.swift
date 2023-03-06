@@ -15,9 +15,9 @@ struct TableView: View {
             List(tableData, id: \.id) { data in
                 NavigationLink(destination: DetailView(tableData: data)) {
                     VStack(alignment: .leading) {
-                        Text("\(data.material) - \(data.thickness)mm")
+                        Text("\(data.material) - \(data.thickness)")
                             .font(.headline)
-                        Text("\(data.length) x \(data.width) mm")
+                        Text("\(data.length) x \(data.width) in")
                             .font(.subheadline)
                         Text("Qty: \(data.quantity)")
                             .font(.subheadline)
@@ -30,7 +30,7 @@ struct TableView: View {
     }
     
     func loadData() {
-        guard let url = URL(string: "http://10.0.2.3/table_data.php") else {
+        guard let url = URL(string: "http://10.0.2.3/table-data.php") else {
             print("Invalid URL")
             return
         }
@@ -67,15 +67,15 @@ struct DetailView: View {
         VStack {
             Text("Material: \(tableData.material)")
                 .font(.headline)
-            Text("Thickness: \(tableData.thickness) mm")
+            Text("Thickness: \(tableData.thickness)")
                 .font(.subheadline)
-            Text("Length: \(tableData.length) mm")
+            Text("Length: \(tableData.length) in")
                 .font(.subheadline)
-            Text("Width: \(tableData.width) mm")
+            Text("Width: \(tableData.width) in")
                 .font(.subheadline)
             Text("Quantity: \(tableData.quantity)")
                 .font(.subheadline)
-            Text("Allocated: \(tableData.allocated ? "Yes" : "No")")
+            Text("Allocated: \((tableData.allocated != 0) ? "Yes" : "No")")
                 .font(.subheadline)
         }
         .navigationBarTitle("\(tableData.material) - \(tableData.thickness)mm")
@@ -84,16 +84,16 @@ struct DetailView: View {
 
 struct DetailView_Previews: PreviewProvider {
     static var previews: some View {
-        DetailView(tableData: TableData(id: 1, material: "Aluminum", thickness: 1.5, length: 48, width: 96, quantity: 10, allocated: false))
+        DetailView(tableData: TableData(id: 1, material: "Aluminum", thickness: "0.12 (11GA)", length: 48, width: 96, quantity: 10, allocated: 1))
     }
 }
 
 struct TableData: Codable, Identifiable {
     let id: Int
     let material: String
-    let thickness: Double
+    let thickness: String
     let length: Double
     let width: Double
     let quantity: Int
-    let allocated: Bool
+    let allocated: Int
 }
