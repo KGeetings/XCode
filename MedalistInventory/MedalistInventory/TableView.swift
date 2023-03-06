@@ -32,12 +32,14 @@ struct TableView: View {
     func loadData() {
         guard let url = URL(string: "http://10.0.2.3/table-data.php") else {
             print("Invalid URL")
+            throw Error.self
             return
         }
         
         let task = URLSession.shared.dataTask(with: url) { data, response, error in
             guard let data = data else {
                 print("No data found: \(error?.localizedDescription ?? "Unknown error")")
+                throw Error.self
                 return
             }
             
@@ -47,6 +49,7 @@ struct TableView: View {
                 }
             } else {
                 print("Invalid response from server")
+                throw Error.self
             }
         }
         
@@ -75,16 +78,16 @@ struct DetailView: View {
                 .font(.subheadline)
             Text("Quantity: \(tableData.quantity)")
                 .font(.subheadline)
-            Text("Allocated: \((tableData.allocated != 0) ? "Yes" : "No")")
+            Text("Allocated: \(tableData.allocated)")
                 .font(.subheadline)
         }
-        .navigationBarTitle("\(tableData.material) - \(tableData.thickness)mm")
+        .navigationBarTitle("\(tableData.material) - \(tableData.thickness)")
     }
 }
 
 struct DetailView_Previews: PreviewProvider {
     static var previews: some View {
-        DetailView(tableData: TableData(id: 1, material: "Aluminum", thickness: "0.12 (11GA)", length: 48, width: 96, quantity: 10, allocated: 1))
+        DetailView(tableData: TableData(id: 1, material: "Aluminum", thickness: "0.12 (11GA)", length: 120, width: 60, quantity: 10, allocated: 1))
     }
 }
 
@@ -96,4 +99,9 @@ struct TableData: Codable, Identifiable {
     let width: Double
     let quantity: Int
     let allocated: Int
+}
+
+enum Error: Swift.Error {
+    case invalidURL
+    case invalidResponse
 }
