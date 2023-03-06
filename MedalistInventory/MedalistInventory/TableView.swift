@@ -30,7 +30,7 @@ struct TableView: View {
     }
     
     func loadData() {
-        guard let url = URL(string: "http://localhost/table_data.php") else {
+        guard let url = URL(string: "http://10.0.2.3/table_data.php") else {
             print("Invalid URL")
             return
         }
@@ -90,10 +90,4 @@ struct TableData: Codable, Identifiable {
     let width: Double
     let quantity: Int
     let allocated: Bool
-}
-
-struct DetailView_Previews: PreviewProvider {
-    static var previews: some View {
-        DetailView(tableData: TableData)
-    }
 }
