@@ -82,6 +82,12 @@ struct DetailView: View {
     }
 }
 
+struct DetailView_Previews: PreviewProvider {
+    static var previews: some View {
+        DetailView(tableData: TableData(id: 1, material: "Aluminum", thickness: 1.5, length: 48, width: 96, quantity: 10, allocated: false))
+    }
+}
+
 struct TableData: Codable, Identifiable {
     let id: Int
     let material: String
