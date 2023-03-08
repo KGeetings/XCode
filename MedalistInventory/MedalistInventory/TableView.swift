@@ -8,71 +8,11 @@
 import SwiftUI
 
 struct TableView: View {
-    @State var tableData = [TableData]()
-    @State var searchText = ""
-    @State var sortAscending = true
-    
-    var sortedData: [TableData] {
-        tableData.sorted { (data1, data2) -> Bool in
-            if sortAscending {
-                return data1.material < data2.material
-            } else {
-                return data1.material > data2.material
-            }
-        }
-    }
-    var filteredData: [TableData] {
-        if searchText.isEmpty {
-            return tableData
-        } else {
-            return tableData.filter { data in
-                data.material.localizedCaseInsensitiveContains(searchText) ||
-                data.thickness.localizedCaseInsensitiveContains(searchText)
-            }
-        }
-    }
-    
-    var body: some View {
-        NavigationView {
-            Form {
-                Section(header: Text("Search")) {
-                    TextField("Search", text: $searchText)
-                }
-                Section(header: Text("Sort")) {
-                    Picker("Sort by", selection: $sortAscending) {
-                        Text("Material A-Z").tag(true)
-                        Text("Material Z-A").tag(false)
-                    }
-                    .pickerStyle(SegmentedPickerStyle())
-                }
-                ForEach(filteredData) { data in
-                    NavigationLink(destination: DetailView(tableData: data)) {
-                        VStack(alignment: .leading) {
-                            Text("\(data.material) - \(data.thickness)")
-                                .font(.headline)
-                            HStack {
-                                Text("Size:")
-                                    .font(.subheadline)
-                                Text("\(data.length) x \(data.width) in")
-                                    .font(.subheadline)
-                                    .foregroundColor(.secondary)
-                            }
-                            HStack {
-                                Text("Qty:")
-                                    .font(.subheadline)
-                                Text("\(data.quantity)")
-                                    .font(.subheadline)
-                                    .foregroundColor(.secondary)
-                            }
-                        }
-                    }
-                }
-            }
-            .navigationBarTitle("Table Data")
-        }
-        .onAppear(perform: loadData)
-    }
-    
+    @State var searchText: String = ""
+    @State var showAddRowModal: Bool = false
+    @State var selectedTableData: TableData?
+    @State var tableData: [TableData]()
+
     // http://10.0.2.3/table-data.php
     func loadData() {
         guard let url = URL(string: "http://10.0.2.3/table-data.php") else {
@@ -110,6 +50,93 @@ struct TableView: View {
         
         task.resume()
     }
+
+    var filteredTableData: [TableData] {
+        if searchText.isEmpty {
+            return tableData
+        } else {
+            return tableData.filter { $0.material.localizedCaseInsensitiveContains(searchText) || $0.thickness.localizedCaseInsensitiveContains(searchText)}
+        }
+    }
+
+    var body: some View {
+        NavigationView {
+            VStack {
+                HStack {
+                    TextField("Search", text: $searchText)
+                        .padding(.horizontal, 10)
+                        .padding(.vertical, 5)
+                        .background(Color.gray.opacity(0.2))
+                        .cornerRadius(5)
+                    Button(action: { showAddRowModal = true }, label: {
+                        Image(systemName: "plus.circle")
+                            .resizable()
+                            .frame(width: 30, height: 30)
+                    })
+                    .padding(.horizontal, 10)
+                }
+                .padding(.horizontal, 10)
+                List(filteredTableData) { data in
+                    Button(action: {
+                        selectedTableData = data
+                    }, label: {
+                        HStack {
+                            Text("\(data.material) - \(data.thickness)")
+                            Spacer()
+                            Text("\(data.quantity) / \(data.allocated)")
+                        }
+                    })
+                }
+            }
+            .navigationBarTitle("Table Data")
+            .sheet(isPresented: $showAddRowModal, content: {
+                // Present Add Row Modal
+                AddTableRowView(tableData: $tableData, isPresented: $showAddRowModal)
+            })
+            .sheet(item: $selectedTableData) { data in
+                // Present Edit Row Modal
+                EditTableRowView(tableData: $tableData, tableDataToEdit: data, isPresented: $selectedTableData)
+            }
+        }
+        .onAppear(perform: loadData)
+    }
+}
+
+struct AddTableRowView: View {
+    @Binding var tableData: [TableData]
+    @Binding var isPresented: Bool
+    @State var material: String = ""
+    @State var thickness: String = ""
+    @State var length: String = ""
+    @State var width: String = ""
+    @State var quantity: String = ""
+    @State var allocated: String = ""
+
+    var body: some View {
+        NavigationView {
+            Form {
+                Section(header: Text("Material Details")) {
+                    TextField("Material", text: $material)
+                    TextField("Thickness", text: $thickness)
+                    TextField("Length", text: $length)
+                    TextField("Width", text: $width)
+                    TextField("Quantity", text: $quantity)
+                    TextField("Allocated", text: $allocated)
+                }
+                Section {
+                    Button(action: {
+                        let newId = UUID().uuidString
+                        let newRow = TableData(id: newId, material: material, thickness: thickness, length: length, width: width, quantity: quantity, allocated: allocated)
+                        tableData.append(newRow)
+                        isPresented = false
+                    }, label: {
+                        Text("Add Row")
+                    })
+                }
+            }
+        .navigationBarTitle("Add Row")
+        }
+    }
 }
 
 struct TableView_Previews: PreviewProvider {
@@ -117,6 +144,38 @@ struct TableView_Previews: PreviewProvider {
         TableView()
     }
 }
+
+struct EditTableRowView: View {
+    @Binding var tableData: [TableData]
+    @State var tableDataToEdit: TableData
+    @Binding var isPresented: TableData?
+    var body: some View {
+        NavigationView {
+            Form {
+                Section(header: Text("Material Details")) {
+                    TextField("Material", text: $tableDataToEdit.material)
+                    TextField("Thickness", text: $tableDataToEdit.thickness)
+                    TextField("Length", text: $tableDataToEdit.length)
+                    TextField("Width", text: $tableDataToEdit.width)
+                    TextField("Quantity", text: $tableDataToEdit.quantity)
+                    TextField("Allocated", text: $tableDataToEdit.allocated)
+                }
+                Section {
+                    Button(action: {
+                        if let index = tableData.firstIndex(where: { $0.id == tableDataToEdit.id }) {
+                            tableData[index] = tableDataToEdit
+                        }
+                        isPresented = nil
+                    }, label: {
+                        Text("Save Changes")
+                    })
+                }
+            }
+            .navigationBarTitle("\(tableDataToEdit.material) - \(tableDataToEdit.thickness)")
+        }
+    }
+}
+
 
 struct DetailView: View {
     let tableData: TableData
@@ -142,7 +201,7 @@ struct DetailView: View {
 
 struct DetailView_Previews: PreviewProvider {
     static var previews: some View {
-        DetailView(tableData: TableData(id: "1", material: "Aluminum", thickness: "0.12 (11GA)", length: "120", width: "60", quantity: "10", allocated: "1"))
+        DetailView(tableData: TableData(id: "1", material: "Aluminum", thickness: "0.12 (11GA)", length: "120", width: "60", quantity: "10", allocated: "2"))
     }
 }
 
