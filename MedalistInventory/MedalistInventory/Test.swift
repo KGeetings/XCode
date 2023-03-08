@@ -1,3 +1,5 @@
+import SwiftUI
+
 struct User: Identifiable {
     let id: Int
     var name: String
