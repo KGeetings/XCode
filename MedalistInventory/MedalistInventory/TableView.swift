@@ -11,9 +11,8 @@ struct TableView: View {
     @State var searchText: String = ""
     @State var showAddRowModal: Bool = false
     @State var selectedTableData: TableData?
-    @State var tableData: [TableData]()
-
-    // http://10.0.2.3/table-data.php
+    @State var tableData = [TableData]()
+    
     func loadData() {
         guard let url = URL(string: "http://10.0.2.3/table-data.php") else {
             print("Invalid URL")
@@ -50,7 +49,7 @@ struct TableView: View {
         
         task.resume()
     }
-
+    
     var filteredTableData: [TableData] {
         if searchText.isEmpty {
             return tableData
@@ -58,7 +57,7 @@ struct TableView: View {
             return tableData.filter { $0.material.localizedCaseInsensitiveContains(searchText) || $0.thickness.localizedCaseInsensitiveContains(searchText)}
         }
     }
-
+    
     var body: some View {
         NavigationView {
             VStack {
@@ -81,14 +80,14 @@ struct TableView: View {
                         selectedTableData = data
                     }, label: {
                         HStack {
-                            Text("\(data.material) - \(data.thickness)")
+                            Text("\(data.material) - \(data.thickness) x \(data.length) x \(data.width)")
                             Spacer()
                             Text("\(data.quantity) / \(data.allocated)")
                         }
                     })
                 }
             }
-            .navigationBarTitle("Table Data")
+            .navigationBarTitle("Sheet Metal Inv.")
             .sheet(isPresented: $showAddRowModal, content: {
                 // Present Add Row Modal
                 AddTableRowView(tableData: $tableData, isPresented: $showAddRowModal)
@@ -102,6 +101,12 @@ struct TableView: View {
     }
 }
 
+struct TableView_Previews: PreviewProvider {
+    static var previews: some View {
+        TableView()
+    }
+}
+
 struct AddTableRowView: View {
     @Binding var tableData: [TableData]
     @Binding var isPresented: Bool
@@ -111,7 +116,7 @@ struct AddTableRowView: View {
     @State var width: String = ""
     @State var quantity: String = ""
     @State var allocated: String = ""
-
+    
     var body: some View {
         NavigationView {
             Form {
@@ -134,14 +139,8 @@ struct AddTableRowView: View {
                     })
                 }
             }
-        .navigationBarTitle("Add Row")
+            .navigationBarTitle("Add Row")
         }
-    }
-}
-
-struct TableView_Previews: PreviewProvider {
-    static var previews: some View {
-        TableView()
     }
 }
 
@@ -176,41 +175,12 @@ struct EditTableRowView: View {
     }
 }
 
-
-struct DetailView: View {
-    let tableData: TableData
-    
-    var body: some View {
-        VStack {
-            Text("Material: \(tableData.material)")
-                .font(.headline)
-            Text("Thickness: \(tableData.thickness)")
-                .font(.subheadline)
-            Text("Length: \(tableData.length) in")
-                .font(.subheadline)
-            Text("Width: \(tableData.width) in")
-                .font(.subheadline)
-            Text("Quantity: \(tableData.quantity)")
-                .font(.subheadline)
-            Text("Allocated: \(tableData.allocated)")
-                .font(.subheadline)
-        }
-        .navigationBarTitle("\(tableData.material) - \(tableData.thickness)")
-    }
-}
-
-struct DetailView_Previews: PreviewProvider {
-    static var previews: some View {
-        DetailView(tableData: TableData(id: "1", material: "Aluminum", thickness: "0.12 (11GA)", length: "120", width: "60", quantity: "10", allocated: "2"))
-    }
-}
-
 struct TableData: Codable, Identifiable {
     let id: String
-    let material: String
-    let thickness: String
-    let length: String
-    let width: String
-    let quantity: String
-    let allocated: String
+    var material: String
+    var thickness: String
+    var length: String
+    var width: String
+    var quantity: String
+    var allocated: String
 }
