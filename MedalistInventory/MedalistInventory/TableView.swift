@@ -112,10 +112,10 @@ struct AddTableRowView: View {
     @Binding var isPresented: Bool
     @State var material: String = ""
     @State var thickness: String = ""
-    @State var length: String = ""
-    @State var width: String = ""
-    @State var quantity: String = ""
-    @State var allocated: String = ""
+    @State var length: Double = 0
+    @State var width: Double = 0
+    @State var quantity: Int = 0
+    @State var allocated: Int = 0
     
     var body: some View {
         NavigationView {
@@ -123,15 +123,15 @@ struct AddTableRowView: View {
                 Section(header: Text("Material Details")) {
                     TextField("Material", text: $material)
                     TextField("Thickness", text: $thickness)
-                    TextField("Length", text: $length)
-                    TextField("Width", text: $width)
-                    TextField("Quantity", text: $quantity)
-                    TextField("Allocated", text: $allocated)
+                    TextField("Length", value: $length, formatter: NumberFormatter())
+                    TextField("Width", value: $width, formatter: NumberFormatter())
+                    TextField("Quantity", value: $quantity, formatter: NumberFormatter())
+                    TextField("Allocated", value: $allocated, formatter: NumberFormatter())
                 }
                 Section {
                     Button(action: {
                         let newId = UUID().uuidString
-                        let newRow = TableData(id: newId, material: material, thickness: thickness, length: length, width: width, quantity: quantity, allocated: allocated)
+                        let newRow = TableData(id: newId, material: material, thickness: thickness, length: Double(length), width: Double(width), quantity: quantity, allocated: allocated)
                         tableData.append(newRow)
                         isPresented = false
                     }, label: {
@@ -154,10 +154,10 @@ struct EditTableRowView: View {
                 Section(header: Text("Material Details")) {
                     TextField("Material", text: $tableDataToEdit.material)
                     TextField("Thickness", text: $tableDataToEdit.thickness)
-                    TextField("Length", text: $tableDataToEdit.length)
-                    TextField("Width", text: $tableDataToEdit.width)
-                    TextField("Quantity", text: $tableDataToEdit.quantity)
-                    TextField("Allocated", text: $tableDataToEdit.allocated)
+                    TextField("Length", value: $tableDataToEdit.length, formatter: NumberFormatter())
+                    TextField("Width", value: $tableDataToEdit.width, formatter: NumberFormatter())
+                    TextField("Quantity", value: $tableDataToEdit.quantity, formatter: NumberFormatter())
+                    TextField("Allocated", value: $tableDataToEdit.allocated, formatter: NumberFormatter())
                 }
                 Section {
                     Button(action: {
@@ -179,8 +179,8 @@ struct TableData: Codable, Identifiable {
     let id: String
     var material: String
     var thickness: String
-    var length: String
-    var width: String
-    var quantity: String
-    var allocated: String
+    var length: Double
+    var width: Double
+    var quantity: Int
+    var allocated: Int
 }
