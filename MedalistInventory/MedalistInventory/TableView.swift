@@ -104,14 +104,18 @@ struct TableView: View {
 }
 
 struct TableView_Previews: PreviewProvider {
+    // Example JSON: {"id":169,"material":"Aluminum 3003","thickness":"0.06 (16GA)","length":85.5,"width":48.25,"quantity":1,"allocated":3}
+    static let tableData = [TableData(id: 169, material: "Aluminum 3003", thickness: "0.06 (16GA)", length: 85.5, width: 48.25, quantity: 1, allocated: 3)]
+
     static var previews: some View {
-        TableView()
+        TableView(tableData: tableData)
     }
 }
 
 struct AddTableRowView: View {
     @Binding var tableData: [TableData]
     @Binding var isPresented: Bool
+    @State var id: Int = 0
     @State var material: String = ""
     @State var thickness: String = ""
     @State var length: Double = 0
@@ -132,8 +136,7 @@ struct AddTableRowView: View {
                 }
                 Section {
                     Button(action: {
-                        let newId = UUID().uuidString
-                        let newRow = TableData(id: newId, material: material, thickness: thickness, length: Double(length), width: Double(width), quantity: quantity, allocated: allocated)
+                        let newRow = TableData(id: id, material: material, thickness: thickness, length: Double(length), width: Double(width), quantity: quantity, allocated: allocated)
                         tableData.append(newRow)
                         isPresented = false
                     }, label: {
@@ -178,7 +181,7 @@ struct EditTableRowView: View {
 }
 
 struct TableData: Codable, Identifiable {
-    var id: String
+    var id: Int
     var material: String
     var thickness: String
     var length: Double
