@@ -135,12 +135,22 @@ struct AddTableRowView: View {
     var body: some View {
         NavigationView {
             Form {
-                Section(header: Text("Material Details")) {
+                Section(header: Text("Material")) {
                     TextField("Material", text: $material)
+                }
+                Section(header: Text("Thickness")) {
                     TextField("Thickness", text: $thickness)
+                }
+                Section(header: Text("Length")) {
                     TextField("Length", value: $length, formatter: numberFormatter)
+                }
+                Section(header: Text("Width")) {
                     TextField("Width", value: $width, formatter: numberFormatter)
+                }
+                Section(header: Text("Quantity")) {
                     TextField("Quantity", value: $quantity, formatter: NumberFormatter())
+                }
+                Section(header: Text("Allocated")) {
                     TextField("Allocated", value: $allocated, formatter: NumberFormatter())
                 }
                 Section {
@@ -165,12 +175,22 @@ struct EditTableRowView: View {
     var body: some View {
         NavigationView {
             Form {
-                Section(header: Text("Material Details")) {
+                Section(header: Text("Material")) {
                     TextField("Material", text: $tableDataToEdit.material)
+                }
+                Section(header: Text("Thickness")) {
                     TextField("Thickness", text: $tableDataToEdit.thickness)
+                }
+                Section(header: Text("Length")) {
                     TextField("Length", value: $tableDataToEdit.length, formatter: numberFormatter)
+                }
+                Section(header: Text("Width")) {
                     TextField("Width", value: $tableDataToEdit.width, formatter: numberFormatter)
+                }
+                Section(header: Text("Quantity")) {
                     TextField("Quantity", value: $tableDataToEdit.quantity, formatter: NumberFormatter())
+                }
+                Section(header: Text("Allocated")) {
                     TextField("Allocated", value: $tableDataToEdit.allocated, formatter: NumberFormatter())
                 }
                 Section {
