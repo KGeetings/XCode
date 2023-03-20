@@ -16,7 +16,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		48649FB529B5A1E000F6C29A /* MedalistInventory.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MedalistInventory.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		48649FB529B5A1E000F6C29A /* Medalist.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Medalist.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		48649FB829B5A1E000F6C29A /* MedalistInventoryApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedalistInventoryApp.swift; sourceTree = "<group>"; };
 		48649FBA29B5A1E000F6C29A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		48649FBC29B5A1E500F6C29A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -47,7 +47,7 @@
 		48649FB629B5A1E000F6C29A /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				48649FB529B5A1E000F6C29A /* MedalistInventory.app */,
+				48649FB529B5A1E000F6C29A /* Medalist.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -76,9 +76,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		48649FB429B5A1E000F6C29A /* MedalistInventory */ = {
+		48649FB429B5A1E000F6C29A /* Medalist */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 48649FC329B5A1E500F6C29A /* Build configuration list for PBXNativeTarget "MedalistInventory" */;
+			buildConfigurationList = 48649FC329B5A1E500F6C29A /* Build configuration list for PBXNativeTarget "Medalist" */;
 			buildPhases = (
 				48649FB129B5A1E000F6C29A /* Sources */,
 				48649FB229B5A1E000F6C29A /* Frameworks */,
@@ -88,9 +88,9 @@
 			);
 			dependencies = (
 			);
-			name = MedalistInventory;
+			name = Medalist;
 			productName = MedalistInventory;
-			productReference = 48649FB529B5A1E000F6C29A /* MedalistInventory.app */;
+			productReference = 48649FB529B5A1E000F6C29A /* Medalist.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -121,7 +121,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				48649FB429B5A1E000F6C29A /* MedalistInventory */,
+				48649FB429B5A1E000F6C29A /* Medalist */,
 			);
 		};
 /* End PBXProject section */
@@ -277,11 +277,11 @@
 				DEVELOPMENT_ASSET_PATHS = "\"MedalistInventory/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.business";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -305,11 +305,11 @@
 				DEVELOPMENT_ASSET_PATHS = "\"MedalistInventory/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.business";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -335,7 +335,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		48649FC329B5A1E500F6C29A /* Build configuration list for PBXNativeTarget "MedalistInventory" */ = {
+		48649FC329B5A1E500F6C29A /* Build configuration list for PBXNativeTarget "Medalist" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				48649FC429B5A1E500F6C29A /* Debug */,
