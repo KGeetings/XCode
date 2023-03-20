@@ -14,6 +14,7 @@ struct TableView: View {
     @State var tableData = [TableData]()
     
     func loadData() {
+        // Example JSON: {"id":169,"material":"Aluminum 3003","thickness":"0.06 (16GA)","length":85.5,"width":48.25,"quantity":1,"allocated":3}
         guard let url = URL(string: "http://10.0.2.3/table-data.php") else {
             print("Invalid URL")
             return
@@ -38,9 +39,10 @@ struct TableView: View {
             }
             
             do {
-                let decodedData = try JSONDecoder().decode([TableData].self, from: data)
+                let decoder = JSONDecoder()
+                let decodedData = try decoder.decode([TableData].self, from: data)
                 DispatchQueue.main.async {
-                    self.tableData = decodedData
+                    tableData = decodedData
                 }
             } catch {
                 print("Error decoding JSON: \(error.localizedDescription)")
@@ -176,7 +178,7 @@ struct EditTableRowView: View {
 }
 
 struct TableData: Codable, Identifiable {
-    let id: String
+    var id: String
     var material: String
     var thickness: String
     var length: Double
