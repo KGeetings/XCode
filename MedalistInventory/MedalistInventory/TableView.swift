@@ -104,13 +104,17 @@ struct TableView: View {
 }
 
 struct TableView_Previews: PreviewProvider {
-    // Example JSON: {"id":169,"material":"Aluminum 3003","thickness":"0.06 (16GA)","length":85.5,"width":48.25,"quantity":1,"allocated":3}
-    static let tableData = [TableData(id: 169, material: "Aluminum 3003", thickness: "0.06 (16GA)", length: 85.5, width: 48.25, quantity: 1, allocated: 3)]
-
     static var previews: some View {
-        TableView(tableData: tableData)
+        TableView()
     }
 }
+
+let numberFormatter: NumberFormatter = {
+    let numberFormatter = NumberFormatter()
+    numberFormatter.numberStyle = .decimal
+    numberFormatter.maximumFractionDigits = 2
+    return numberFormatter
+}()
 
 struct AddTableRowView: View {
     @Binding var tableData: [TableData]
@@ -129,8 +133,8 @@ struct AddTableRowView: View {
                 Section(header: Text("Material Details")) {
                     TextField("Material", text: $material)
                     TextField("Thickness", text: $thickness)
-                    TextField("Length", value: $length, formatter: NumberFormatter())
-                    TextField("Width", value: $width, formatter: NumberFormatter())
+                    TextField("Length", value: $length, formatter: numberFormatter)
+                    TextField("Width", value: $width, formatter: numberFormatter)
                     TextField("Quantity", value: $quantity, formatter: NumberFormatter())
                     TextField("Allocated", value: $allocated, formatter: NumberFormatter())
                 }
@@ -159,8 +163,8 @@ struct EditTableRowView: View {
                 Section(header: Text("Material Details")) {
                     TextField("Material", text: $tableDataToEdit.material)
                     TextField("Thickness", text: $tableDataToEdit.thickness)
-                    TextField("Length", value: $tableDataToEdit.length, formatter: NumberFormatter())
-                    TextField("Width", value: $tableDataToEdit.width, formatter: NumberFormatter())
+                    TextField("Length", value: $tableDataToEdit.length, formatter: numberFormatter)
+                    TextField("Width", value: $tableDataToEdit.width, formatter: numberFormatter)
                     TextField("Quantity", value: $tableDataToEdit.quantity, formatter: NumberFormatter())
                     TextField("Allocated", value: $tableDataToEdit.allocated, formatter: NumberFormatter())
                 }
