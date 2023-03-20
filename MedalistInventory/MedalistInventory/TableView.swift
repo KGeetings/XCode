@@ -82,7 +82,12 @@ struct TableView: View {
                         selectedTableData = data
                     }, label: {
                         HStack {
-                            Text("\(data.material) - \(data.thickness) x \(data.length) x \(data.width)")
+                            /* Text("\(data.material) - \(data.thickness) x \(data.length) x \(data.width)")
+                            Spacer()
+                            Text("\(data.quantity) / \(data.allocated)") */
+
+                            // With number formatter
+                            Text("\(data.material) - \(data.thickness) x \(numberFormatter.string(from: NSNumber(value: data.length))!) x \(numberFormatter.string(from: NSNumber(value: data.width))!)")
                             Spacer()
                             Text("\(data.quantity) / \(data.allocated)")
                         }
