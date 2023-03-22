@@ -61,7 +61,7 @@ struct TableView: View {
     }
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             VStack {
                 HStack {
                     TextField("Search", text: $searchText)
@@ -175,21 +175,21 @@ struct EditTableRowView: View {
     var body: some View {
         NavigationView {
             Form {
-                Section(header: Text("Material")) {
-                    TextField("Material", text: $tableDataToEdit.material)
-                }
-                Section(header: Text("Thickness")) {
-                    TextField("Thickness", text: $tableDataToEdit.thickness)
-                }
-                Section(header: Text("Length")) {
-                    TextField("Length", value: $tableDataToEdit.length, formatter: numberFormatter)
-                }
-                Section(header: Text("Width")) {
-                    TextField("Width", value: $tableDataToEdit.width, formatter: numberFormatter)
-                }
-                Section(header: Text("Quantity")) {
-                    TextField("Quantity", value: $tableDataToEdit.quantity, formatter: NumberFormatter())
-                }
+                //Section(header: Text("Material" + String(tableData.material))) {
+                //    TextField("Material", text: $tableDataToEdit.material)
+                //}
+                //Section(header: Text("Thickness")) {
+                //    TextField("Thickness", text: $tableDataToEdit.thickness)
+                //}
+                //Section(header: Text("Length")) {
+                 //   TextField("Length", value: $tableDataToEdit.length, formatter: numberFormatter)
+                //}
+                //Section(header: Text("Width")) {
+                //    TextField("Width", value: $tableDataToEdit.width, formatter: numberFormatter)
+                //}
+                //Section(header: Text("Quantity")) {
+                //    TextField("Quantity", value: $tableDataToEdit.quantity, formatter: NumberFormatter())
+                //}
                 Section(header: Text("Allocated")) {
                     TextField("Allocated", value: $tableDataToEdit.allocated, formatter: NumberFormatter())
                 }
@@ -204,7 +204,7 @@ struct EditTableRowView: View {
                     })
                 }
             }
-            .navigationBarTitle("\(tableDataToEdit.material) - \(tableDataToEdit.thickness)")
+            //.navigationBarTitle("\(tableDataToEdit.material) - \(tableDataToEdit.thickness)")
         }
     }
 }
