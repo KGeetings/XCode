@@ -76,6 +76,9 @@ struct TableView: View {
                     })
                     .padding(.horizontal, 10)
                 }
+                // Add a Picker here for filtering by material
+                // Add a Picker here for filtering by thickness
+                // Add a Picker here for filtering by All, Fullsheets, or Remnants
                 .padding(.horizontal, 10)
                 List(filteredTableData) { data in
                     Button(action: {
