@@ -8,13 +8,30 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var selection: Tab = .sheetMetal
+    
+    enum Tab {
+        case sheetMetal
+        case extraParts
+    }
+    
+    init() {
+        UITabBar.appearance().backgroundColor = UIColor(.gray)
+    }
+    
     var body: some View {
-        VStack {
-            NavigationLink(destination: TableView()) {
-                Text("Load Table Data")
-            }
+        TabView(selection: $selection) {
+            TableView()
+                .tabItem {
+                    Label("Sheet Metal", systemImage: "star")
+                }
+                .tag(Tab.sheetMetal)
+            TableView()
+                .tabItem {
+                    Label("Extra Parts", systemImage: "list.bullet")
+                }
+                .tag(Tab.extraParts)
         }
-        .padding()
     }
 }
 

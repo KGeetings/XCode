@@ -11,7 +11,7 @@ import SwiftUI
 struct MedalistInventoryApp: App {
     var body: some Scene {
         WindowGroup {
-            TableView()
+            ContentView()
         }
     }
 }
