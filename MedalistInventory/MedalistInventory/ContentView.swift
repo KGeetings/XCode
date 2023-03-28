@@ -21,12 +21,12 @@ struct ContentView: View {
     
     var body: some View {
         TabView(selection: $selection) {
-            TableView()
+            SheetMetalView()
                 .tabItem {
                     Label("Sheet Metal", systemImage: "star")
                 }
                 .tag(Tab.sheetMetal)
-            TableView()
+            ExtraPartsView()
                 .tabItem {
                     Label("Extra Parts", systemImage: "list.bullet")
                 }

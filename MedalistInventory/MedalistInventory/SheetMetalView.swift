@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct TableView: View {
+struct SheetMetalView: View {
     @State var searchText: String = ""
     @State var showAddRowModal: Bool = false
     @State var selectedTableData: TableData?
@@ -84,15 +84,17 @@ struct TableView: View {
                     Button(action: {
                         selectedTableData = data
                     }, label: {
-                        HStack {
-                            /* Text("\(data.material) - \(data.thickness) x \(data.length) x \(data.width)")
-                            Spacer()
-                            Text("\(data.quantity) / \(data.allocated)") */
-
+                        HStack(alignment: .top){
                             // With number formatter
-                            Text("\(data.material) - \(data.thickness) x \(numberFormatter.string(from: NSNumber(value: data.length))!) x \(numberFormatter.string(from: NSNumber(value: data.width))!)")
+                            VStack(alignment: .leading) {
+                                Text("\(data.material)")
+                                Text("Qty: \(data.quantity) / Alloc: \(data.allocated)")
+                            }
                             Spacer()
-                            Text("\(data.quantity) / \(data.allocated)")
+                            VStack(alignment: .trailing) {
+                                Text("\(data.thickness)")
+                                Text("\(numberFormatter.string(from: NSNumber(value: data.length))!) x \(numberFormatter.string(from: NSNumber(value: data.width))!)")
+                            }
                         }
                     })
                 }
@@ -111,9 +113,9 @@ struct TableView: View {
     }
 }
 
-struct TableView_Previews: PreviewProvider {
+struct SheetMetalView_Previews: PreviewProvider {
     static var previews: some View {
-        TableView()
+        SheetMetalView()
     }
 }
 
