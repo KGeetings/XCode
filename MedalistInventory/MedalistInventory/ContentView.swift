@@ -23,12 +23,12 @@ struct ContentView: View {
         TabView(selection: $selection) {
             SheetMetalView()
                 .tabItem {
-                    Label("Sheet Metal", systemImage: "star")
+                    Label("Sheet Metal", systemImage: "square.stack.3d.up.fill")
                 }
                 .tag(Tab.sheetMetal)
             ExtraPartsView()
                 .tabItem {
-                    Label("Extra Parts", systemImage: "list.bullet")
+                    Label("Extra Parts", systemImage: "cube.fill")
                 }
                 .tag(Tab.extraParts)
         }
