@@ -12,7 +12,6 @@
 		48649FBD29B5A1E500F6C29A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 48649FBC29B5A1E500F6C29A /* Assets.xcassets */; };
 		48649FC029B5A1E500F6C29A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 48649FBF29B5A1E500F6C29A /* Preview Assets.xcassets */; };
 		48649FC729B5A20F00F6C29A /* SheetMetalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48649FC629B5A20E00F6C29A /* SheetMetalView.swift */; };
-		4864A03329B82B8600F6C29A /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4864A03229B82B8500F6C29A /* Test.swift */; };
 		4868837829D366A0003C2FFD /* ExtraPartsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4868837729D366A0003C2FFD /* ExtraPartsView.swift */; };
 /* End PBXBuildFile section */
 
@@ -23,7 +22,6 @@
 		48649FBC29B5A1E500F6C29A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		48649FBF29B5A1E500F6C29A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		48649FC629B5A20E00F6C29A /* SheetMetalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetMetalView.swift; sourceTree = "<group>"; };
-		4864A03229B82B8500F6C29A /* Test.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Test.swift; sourceTree = "<group>"; };
 		4868837729D366A0003C2FFD /* ExtraPartsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtraPartsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -59,7 +57,6 @@
 			children = (
 				48649FBC29B5A1E500F6C29A /* Assets.xcassets */,
 				48649FBE29B5A1E500F6C29A /* Preview Content */,
-				4864A03229B82B8500F6C29A /* Test.swift */,
 				48649FB829B5A1E000F6C29A /* MedalistInventoryApp.swift */,
 				48649FBA29B5A1E000F6C29A /* ContentView.swift */,
 				48649FC629B5A20E00F6C29A /* SheetMetalView.swift */,
@@ -148,7 +145,6 @@
 			files = (
 				48649FBB29B5A1E000F6C29A /* ContentView.swift in Sources */,
 				4868837829D366A0003C2FFD /* ExtraPartsView.swift in Sources */,
-				4864A03329B82B8600F6C29A /* Test.swift in Sources */,
 				48649FC729B5A20F00F6C29A /* SheetMetalView.swift in Sources */,
 				48649FB929B5A1E000F6C29A /* MedalistInventoryApp.swift in Sources */,
 			);
