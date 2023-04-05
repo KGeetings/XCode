@@ -171,21 +171,16 @@ struct EditTableRowView: View {
     var body: some View {
         NavigationView {
             Form {
-                //Section(header: Text("Material" + String(tableData.material)))
+                // Create a title for each with the previous values
+                Text("Material: \(tableDataToEdit.material)")
+                    .font(.title)
                 TextField("Material", text: $tableDataToEdit.material)
-                //Section(header: Text("Thickness")) {
-                    TextField("Thickness", text: $tableDataToEdit.thickness)
-                //}
-                //Section(header: Text("Length")) {
-                   TextField("Length", value: $tableDataToEdit.length, formatter: numberFormatter)
-                //}
-                //Section(header: Text("Width")) {
-                    TextField("Width", value: $tableDataToEdit.width, formatter: numberFormatter)
-                //}
-                //Section(header: Text("Quantity")) {
-                    TextField("Quantity", value: $tableDataToEdit.quantity, formatter: NumberFormatter())
-                //}
-                //Section(header: Text("Allocated"))
+                Text("Thickness: \(tableDataToEdit.thickness)")
+                    .font(.title)
+                TextField("Thickness", text: $tableDataToEdit.thickness)
+                TextField("Length", value: $tableDataToEdit.length, formatter: numberFormatter)
+                TextField("Width", value: $tableDataToEdit.width, formatter: numberFormatter)
+                TextField("Quantity", value: $tableDataToEdit.quantity, formatter: NumberFormatter())
                 TextField("Allocated", value: $tableDataToEdit.allocated, formatter: NumberFormatter())
                 Button(action: {
                     if let index = tableData.firstIndex(where: { $0.id == tableDataToEdit.id }) {
