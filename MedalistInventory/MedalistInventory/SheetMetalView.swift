@@ -166,30 +166,33 @@ struct AddTableRowView: View {
 
 struct EditTableRowView: View {
     @Binding var tableData: [TableData]
+    @State var previousTableData: TableData
     @State var tableDataToEdit: TableData
     @Binding var isPresented: TableData?
     var body: some View {
         NavigationView {
             Form {
-                // Create a title for each with the previous values
-                Text("Material: \(tableDataToEdit.material)")
-                    .font(.title)
-                TextField("Material", text: $tableDataToEdit.material)
-                Text("Thickness: \(tableDataToEdit.thickness)")
-                    .font(.title)
-                TextField("Thickness", text: $tableDataToEdit.thickness)
-                TextField("Length", value: $tableDataToEdit.length, formatter: numberFormatter)
-                TextField("Width", value: $tableDataToEdit.width, formatter: numberFormatter)
-                TextField("Quantity", value: $tableDataToEdit.quantity, formatter: NumberFormatter())
-                TextField("Allocated", value: $tableDataToEdit.allocated, formatter: NumberFormatter())
-                Button(action: {
-                    if let index = tableData.firstIndex(where: { $0.id == tableDataToEdit.id }) {
-                        tableData[index] = tableDataToEdit
-                    }
-                    isPresented = nil
-                }, label: {
-                    Text("Save Changes")
-                })
+                VStack{
+                    Text("Material: \(previousTableData.material)")
+                        .font(.title)
+                    TextField("Material", text: $tableDataToEdit.material)
+                    Text("Thickness: \(previousTableData.thickness)")
+                        .font(.title)
+                    TextField("Thickness", text: $tableDataToEdit.thickness)
+                    TextField("Length", value: $tableDataToEdit.length, formatter: numberFormatter)
+                    TextField("Width", value: $tableDataToEdit.width, formatter: numberFormatter)
+                    TextField("Quantity", value: $tableDataToEdit.quantity, formatter: NumberFormatter())
+                    TextField("Allocated", value: $tableDataToEdit.allocated, formatter: NumberFormatter())
+                    Button(action: {
+                        if let index = tableData.firstIndex(where: { $0.id == tableDataToEdit.id }) {
+                            tableData[index] = tableDataToEdit
+                        }
+                        isPresented = nil
+                    }, label: {
+                        Text("Save Changes")
+                    })
+                }
+                .padding()
             }
             //.navigationBarTitle("\(tableDataToEdit.material) - \(tableDataToEdit.thickness)")
         }
