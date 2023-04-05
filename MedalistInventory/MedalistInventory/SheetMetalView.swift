@@ -99,7 +99,7 @@ struct SheetMetalView: View {
             })
             .sheet(item: $selectedTableData) { data in
                 // Present Edit Row Modal
-                EditTableRowView(tableData: $tableData, tableDataToEdit: data, isPresented: $selectedTableData)
+                EditTableRowView(tableData: $tableData, previousTableData: data, tableDataToEdit: data, isPresented: $selectedTableData)
             }
         }
         .onAppear(perform: loadData)
@@ -172,10 +172,9 @@ struct EditTableRowView: View {
     var body: some View {
         NavigationView {
             Form {
-                VStack{
-                    Text("Material: \(previousTableData.material)")
-                        .font(.title)
+                Section(header: Text("Material: \(previousTableData.material)")) {
                     TextField("Material", text: $tableDataToEdit.material)
+                }
                     Text("Thickness: \(previousTableData.thickness)")
                         .font(.title)
                     TextField("Thickness", text: $tableDataToEdit.thickness)
@@ -191,8 +190,6 @@ struct EditTableRowView: View {
                     }, label: {
                         Text("Save Changes")
                     })
-                }
-                .padding()
             }
             //.navigationBarTitle("\(tableDataToEdit.material) - \(tableDataToEdit.thickness)")
         }
