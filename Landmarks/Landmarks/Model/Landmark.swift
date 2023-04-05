@@ -1,3 +1,10 @@
+/*
+See LICENSE folder for this sample’s licensing information.
+
+Abstract:
+A representation of a single landmark.
+*/
+
 import Foundation
 import SwiftUI
 import CoreLocation
@@ -21,6 +28,9 @@ struct Landmark: Hashable, Codable, Identifiable {
     private var imageName: String
     var image: Image {
         Image(imageName)
+    }
+    var featureImage: Image? {
+        isFeatured ? Image(imageName + "_feature") : nil
     }
 
     private var coordinates: Coordinates

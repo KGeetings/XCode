@@ -1,3 +1,10 @@
+/*
+See LICENSE folder for this sample’s licensing information.
+
+Abstract:
+A representation of a hike.
+*/
+
 import Foundation
 
 struct Hike: Codable, Hashable, Identifiable {

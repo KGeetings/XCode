@@ -1,3 +1,10 @@
+/*
+See LICENSE folder for this sample’s licensing information.
+
+Abstract:
+A button that acts as a favorites indicator.
+*/
+
 import SwiftUI
 
 struct FavoriteButton: View {
