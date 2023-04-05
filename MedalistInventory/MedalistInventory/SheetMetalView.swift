@@ -1,10 +1,3 @@
-//
-//  TableView.swift
-//  MedalistInventory
-//
-//  Created by Kenyon on 3/5/23.
-//
-
 import SwiftUI
 
 struct SheetMetalView: View {
@@ -15,7 +8,7 @@ struct SheetMetalView: View {
     
     func loadData() {
         // Example JSON: {"id":169,"material":"Aluminum 3003","thickness":"0.06 (16GA)","length":85.5,"width":48.25,"quantity":1,"allocated":3}
-        guard let url = URL(string: "http://10.0.2.3/table-data.php") else {
+        guard let url = URL(string: "http://10.0.2.3/table-data.php?table=sheet_metal") else {
             print("Invalid URL")
             return
         }
@@ -158,15 +151,13 @@ struct AddTableRowView: View {
                 Section(header: Text("Allocated")) {
                     TextField("Allocated", value: $allocated, formatter: NumberFormatter())
                 }
-                Section {
-                    Button(action: {
-                        let newRow = TableData(id: id, material: material, thickness: thickness, length: Double(length), width: Double(width), quantity: quantity, allocated: allocated)
-                        tableData.append(newRow)
-                        isPresented = false
-                    }, label: {
-                        Text("Add Row")
-                    })
-                }
+                Button(action: {
+                    let newRow = TableData(id: id, material: material, thickness: thickness, length: Double(length), width: Double(width), quantity: quantity, allocated: allocated)
+                    tableData.append(newRow)
+                    isPresented = false
+                }, label: {
+                    Text("Add Row")
+                })
             }
             .navigationBarTitle("Add Row")
         }
@@ -180,34 +171,30 @@ struct EditTableRowView: View {
     var body: some View {
         NavigationView {
             Form {
-                //Section(header: Text("Material" + String(tableData.material))) {
-                //    TextField("Material", text: $tableDataToEdit.material)
-                //}
+                //Section(header: Text("Material" + String(tableData.material)))
+                TextField("Material", text: $tableDataToEdit.material)
                 //Section(header: Text("Thickness")) {
-                //    TextField("Thickness", text: $tableDataToEdit.thickness)
+                    TextField("Thickness", text: $tableDataToEdit.thickness)
                 //}
                 //Section(header: Text("Length")) {
-                 //   TextField("Length", value: $tableDataToEdit.length, formatter: numberFormatter)
+                   TextField("Length", value: $tableDataToEdit.length, formatter: numberFormatter)
                 //}
                 //Section(header: Text("Width")) {
-                //    TextField("Width", value: $tableDataToEdit.width, formatter: numberFormatter)
+                    TextField("Width", value: $tableDataToEdit.width, formatter: numberFormatter)
                 //}
                 //Section(header: Text("Quantity")) {
-                //    TextField("Quantity", value: $tableDataToEdit.quantity, formatter: NumberFormatter())
+                    TextField("Quantity", value: $tableDataToEdit.quantity, formatter: NumberFormatter())
                 //}
-                Section(header: Text("Allocated")) {
-                    TextField("Allocated", value: $tableDataToEdit.allocated, formatter: NumberFormatter())
-                }
-                Section {
-                    Button(action: {
-                        if let index = tableData.firstIndex(where: { $0.id == tableDataToEdit.id }) {
-                            tableData[index] = tableDataToEdit
-                        }
-                        isPresented = nil
-                    }, label: {
-                        Text("Save Changes")
-                    })
-                }
+                //Section(header: Text("Allocated"))
+                TextField("Allocated", value: $tableDataToEdit.allocated, formatter: NumberFormatter())
+                Button(action: {
+                    if let index = tableData.firstIndex(where: { $0.id == tableDataToEdit.id }) {
+                        tableData[index] = tableDataToEdit
+                    }
+                    isPresented = nil
+                }, label: {
+                    Text("Save Changes")
+                })
             }
             //.navigationBarTitle("\(tableDataToEdit.material) - \(tableDataToEdit.thickness)")
         }

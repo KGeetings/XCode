@@ -1,10 +1,3 @@
-//
-//  ExtraPartsView.swift
-//  Medalist
-//
-//  Created by Kenyon on 3/28/23.
-//
-
 import SwiftUI
 
 struct ExtraPartsView: View {
