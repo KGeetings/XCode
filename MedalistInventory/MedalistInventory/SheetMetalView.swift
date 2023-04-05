@@ -44,40 +44,14 @@ struct SheetMetalView: View {
         
         task.resume()
     }
-
-    // Define the materials, thicknesses, and types to be used in the pickers
-    let materials = ["Aluminum", "Mild Steel", "Stainless Steel"]
-    let thicknesses = ["0.06 (16GA)", "0.08 (14GA)", "0.125 (11GA)", "0.25 (7GA)", "0.375 (5GA)", "0.5 (4GA)", "0.75 (3GA)", "1 (2GA)", "1.5 (1GA)", "2 (1/2)", "3 (3/8)", "4 (1/4)", "6 (5/16)", "8 (3/8)", "10 (7/16)", "12 (1/2)", "16 (5/8)", "20 (3/4)", "24 (7/8)", "28 (1)", "32 (1 1/8)", "36 (1 3/8)", "40 (1 1/2)", "48 (1 3/4)", "60 (2 3/8)", "72 (2 7/8)"]
-    let types = ["All", "Fullsheets", "Remnants"]
-
-    // Define the selected values for the pickers
-    @State private var selectedMaterial = materials[0]
-    @State private var selectedThickness = thicknesses[0]
-    @State private var selectedType = types[0]
     
     var filteredTableData: [TableData] {
-        var result = tableData.filter { data in
-            data.material == selectedMaterial && data.thickness == selectedThickness
-        }
-        if selectedType == "Fullsheets" {
-            result = result.filter {
-                $0.length == 120 && $0.width == 60
-            }
-        } else if selectedType == "Remnants" {
-            result = result.filter {
-                $0.length != 120 || $0.width != 60
-            }
-        }
-        return result
-    }
-
-    /* var filteredTableData: [TableData] {
         if searchText.isEmpty {
             return tableData
         } else {
             return tableData.filter { $0.material.localizedCaseInsensitiveContains(searchText) || $0.thickness.localizedCaseInsensitiveContains(searchText)}
         }
-    } */
+    }
     
     var body: some View {
         NavigationStack {
@@ -98,29 +72,6 @@ struct SheetMetalView: View {
                 // Add a Picker here for filtering by material
                 // Add a Picker here for filtering by thickness
                 // Add a Picker here for filtering by All, Fullsheets, or Remnants
-                HStack {
-                    Picker("Material", selection: $selectedMaterial) {
-                    ForEach(materials, id: \.self) { material in
-                        Text(material)
-                        }
-                    }
-                    .pickerStyle(MenuPickerStyle())
-                    .padding(.horizontal, 10)
-                    Picker("Thickness", selection: $selectedThickness) {
-                        ForEach(thicknesses, id: \.self) { thickness in
-                            Text(thickness)
-                        }
-                    }
-                    .pickerStyle(MenuPickerStyle())
-                    .padding(.horizontal, 10)
-                    Picker("Type", selection: $selectedType) {
-                        ForEach(types, id: \.self) { type in
-                            Text(type)
-                        }
-                    }
-                    .pickerStyle(SegmentedPickerStyle())
-                    .padding(.horizontal, 10)
-                }
                 .padding(.horizontal, 10)
                 List(filteredTableData) { data in
                     Button(action: {
@@ -224,29 +175,21 @@ struct EditTableRowView: View {
                 Section(header: Text("Material: \(previousTableData.material)")) {
                     TextField("Material", text: $tableDataToEdit.material)
                 }
-                Section(header: Text("Thickness: \(previousTableData.thickness)")) {
+                    Text("Thickness: \(previousTableData.thickness)")
+                        .font(.title)
                     TextField("Thickness", text: $tableDataToEdit.thickness)
-                }
-                Section(header: Text("Length: \(numberFormatter.string(from: NSNumber(value: previousTableData.length))!)")) {
                     TextField("Length", value: $tableDataToEdit.length, formatter: numberFormatter)
-                }
-                Section(header: Text("Width: \(numberFormatter.string(from: NSNumber(value: previousTableData.width))!)")) {
                     TextField("Width", value: $tableDataToEdit.width, formatter: numberFormatter)
-                }
-                Section(header: Text("Quantity: \(previousTableData.quantity)")) {
                     TextField("Quantity", value: $tableDataToEdit.quantity, formatter: NumberFormatter())
-                }
-                Section(header: Text("Allocated: \(previousTableData.allocated)")) {
                     TextField("Allocated", value: $tableDataToEdit.allocated, formatter: NumberFormatter())
-                }
-                Button(action: {
-                    if let index = tableData.firstIndex(where: { $0.id == tableDataToEdit.id }) {
-                        tableData[index] = tableDataToEdit
-                    }
-                    isPresented = nil
-                }, label: {
-                    Text("Save Changes")
-                })
+                    Button(action: {
+                        if let index = tableData.firstIndex(where: { $0.id == tableDataToEdit.id }) {
+                            tableData[index] = tableDataToEdit
+                        }
+                        isPresented = nil
+                    }, label: {
+                        Text("Save Changes")
+                    })
             }
             //.navigationBarTitle("\(tableDataToEdit.material) - \(tableDataToEdit.thickness)")
         }
