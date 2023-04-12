@@ -199,21 +199,29 @@ struct EditTableRowView: View {
                 Section(header: Text("Material: \(previousTableData.material)")) {
                     TextField("Material", text: $tableDataToEdit.material)
                 }
-                    Text("Thickness: \(previousTableData.thickness)")
-                        .font(.title)
+                Section(header: Text("Thickness: \(previousTableData.thickness)")) {
                     TextField("Thickness", text: $tableDataToEdit.thickness)
+                }
+                Section(header: Text("Length: \(previousTableData.length)")) {
                     TextField("Length", value: $tableDataToEdit.length, formatter: numberFormatter)
+                }
+                Section(header: Text("Width: \(previousTableData.width)")) {
                     TextField("Width", value: $tableDataToEdit.width, formatter: numberFormatter)
+                }
+                Section(header: Text("Quantity: \(previousTableData.quantity)")) {
                     TextField("Quantity", value: $tableDataToEdit.quantity, formatter: NumberFormatter())
+                }
+                Section(header: Text("Allocated: \(previousTableData.allocated)")) {
                     TextField("Allocated", value: $tableDataToEdit.allocated, formatter: NumberFormatter())
-                    Button(action: {
-                        if let index = tableData.firstIndex(where: { $0.id == tableDataToEdit.id }) {
-                            tableData[index] = tableDataToEdit
-                        }
-                        isPresented = nil
-                    }, label: {
-                        Text("Save Changes")
-                    })
+                }
+                Button(action: {
+                    if let index = tableData.firstIndex(where: { $0.id == tableDataToEdit.id }) {
+                        tableData[index] = tableDataToEdit
+                    }
+                    isPresented = nil
+                }, label: {
+                    Text("Save Changes")
+                })
             }
             //.navigationBarTitle("\(tableDataToEdit.material) - \(tableDataToEdit.thickness)")
         }
