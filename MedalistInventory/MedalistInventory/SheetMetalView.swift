@@ -38,11 +38,6 @@ struct SheetMetalView: View {
                 }
                 return
             }
-
-            guard let data = data else {
-                print("No data found: \(error?.localizedDescription ?? "Unknown error")")
-                return
-            }
             
             guard let httpResponse = response as? HTTPURLResponse else {
                 print("Invalid response")

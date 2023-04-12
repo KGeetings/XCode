@@ -13,6 +13,7 @@
 		48649FC029B5A1E500F6C29A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 48649FBF29B5A1E500F6C29A /* Preview Assets.xcassets */; };
 		48649FC729B5A20F00F6C29A /* SheetMetalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48649FC629B5A20E00F6C29A /* SheetMetalView.swift */; };
 		4868837829D366A0003C2FFD /* ExtraPartsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4868837729D366A0003C2FFD /* ExtraPartsView.swift */; };
+		48E5844F29E6FDEE00D9143A /* table-data.json in Resources */ = {isa = PBXBuildFile; fileRef = 48E5844E29E6FDED00D9143A /* table-data.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +24,7 @@
 		48649FBF29B5A1E500F6C29A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		48649FC629B5A20E00F6C29A /* SheetMetalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetMetalView.swift; sourceTree = "<group>"; };
 		4868837729D366A0003C2FFD /* ExtraPartsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtraPartsView.swift; sourceTree = "<group>"; };
+		48E5844E29E6FDED00D9143A /* table-data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "table-data.json"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +57,7 @@
 		48649FB729B5A1E000F6C29A /* MedalistInventory */ = {
 			isa = PBXGroup;
 			children = (
+				48E5844D29E6FDED00D9143A /* Resources */,
 				48649FBC29B5A1E500F6C29A /* Assets.xcassets */,
 				48649FBE29B5A1E500F6C29A /* Preview Content */,
 				48649FB829B5A1E000F6C29A /* MedalistInventoryApp.swift */,
@@ -71,6 +74,14 @@
 				48649FBF29B5A1E500F6C29A /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		48E5844D29E6FDED00D9143A /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				48E5844E29E6FDED00D9143A /* table-data.json */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -133,6 +144,7 @@
 			files = (
 				48649FC029B5A1E500F6C29A /* Preview Assets.xcassets in Resources */,
 				48649FBD29B5A1E500F6C29A /* Assets.xcassets in Resources */,
+				48E5844F29E6FDEE00D9143A /* table-data.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
