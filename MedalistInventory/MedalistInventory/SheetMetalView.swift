@@ -17,6 +17,28 @@ struct SheetMetalView: View {
         let request = URLRequest(url: url)
         
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            // Check if there is data, if not, use the fallback to local JSON file in Resources/table-data.json
+            guard let data = data else {
+                print("No data found: \(error?.localizedDescription ?? "Unknown error").")
+                // Load local JSON file
+                guard let fileURL = Bundle.main.url(forResource: "table-data", withExtension: "json") else {
+                    print("Error loading local JSON file")
+                    return
+                }
+                
+                do {
+                    let data = try Data(contentsOf: fileURL)
+                    let decoder = JSONDecoder()
+                    let decodedData = try decoder.decode([TableData].self, from: data)
+                    DispatchQueue.main.async {
+                        tableData = decodedData
+                    }
+                } catch {
+                    print("Error decoding JSON: \(error.localizedDescription)")
+                }
+                return
+            }
+
             guard let data = data else {
                 print("No data found: \(error?.localizedDescription ?? "Unknown error")")
                 return
