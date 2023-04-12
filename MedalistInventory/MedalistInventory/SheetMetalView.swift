@@ -5,7 +5,7 @@ struct SheetMetalView: View {
     @State var showAddRowModal: Bool = false
     @State var selectedTableData: TableData?
     @State var tableData = [TableData]()
-    @Binding var filter: Filter
+    //@Binding var filter: Filter
     
     func loadData() {
         // Example JSON: {"id":169,"material":"Aluminum 3003","thickness":"0.06 (16GA)","length":85.5,"width":48.25,"quantity":1,"allocated":3}
@@ -71,11 +71,11 @@ struct SheetMetalView: View {
                     .padding(.horizontal, 10)
                 }
                 // Add a Picker here for filtering by material
-                Picker("Material", selection: $filter.materialFilter) {
-                    ForEach(Filter.Material.allCases) { material in
-                        Text(material.rawValue).tag(material)
-                    }
-                }
+//                Picker("Material", selection: $filter.materialFilter) {
+//                    ForEach(Filter.Material.allCases) { material in
+//                        Text(material.rawValue).tag(material)
+//                    }
+//                }
 
                 // Add a Picker here for filtering by thickness
                 // Add a Picker here for filtering by All, Fullsheets, or Remnants
