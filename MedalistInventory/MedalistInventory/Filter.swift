@@ -20,10 +20,10 @@ struct Filter {
         case mildsteelexpandedmetal = "Mild Steel Expanded Metal"
         case stainlesssteel = "Stainless Steel"
 
-        //var id: String { self.rawValue }
         var id: String { rawValue }
     }
 
+    // https://developer.apple.com/documentation/swiftui/picker
     enum Thickness: String, CaseIterable, Identifiable {
         case all = "All"
         case thickness002 = "0.02 (SHIM)"

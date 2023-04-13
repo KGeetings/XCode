@@ -237,9 +237,39 @@ struct EditTableRowView: View {
                     TextField("Allocated", value: $tableDataToEdit.allocated, formatter: NumberFormatter())
                 }
                 Button(action: {
-                    if let index = tableData.firstIndex(where: { $0.id == tableDataToEdit.id }) {
-                        tableData[index] = tableDataToEdit
+                    // Check if Length, Width, Quantity, and Allocated are all numbers
+                    guard let _ = Double(tableDataToEdit.length) else { return }
+                    guard let _ = Double(tableDataToEdit.width) else { return }
+                    guard let _ = Int(tableDataToEdit.quantity) else { return }
+                    guard let _ = Int(tableDataToEdit.allocated) else { return }
+
+                    // Check if Length, Width, Quantity, and Allocated are all positive numbers
+                    guard tableDataToEdit.length > 0 else { return }
+                    guard tableDataToEdit.width > 0 else { return }
+                    guard tableDataToEdit.quantity > 0 else { return }
+                    guard tableDataToEdit.allocated > 0 else { return }
+
+                    // Check if Lenght is greater than or equal to Width
+                    guard tableDataToEdit.length >= tableDataToEdit.width else { return }
+
+                    // Use database_query.php to update the row in the database
+                    let url = URL(string: "http://10.0.2.3/database_query.php")!
+                    var request = URLRequest(url: url)
+                    request.httpMethod = "POST"
+                    let postString = "task=update&schema=sheet_metal_inventory&id=\(tableDataToEdit.id)&material=\(tableDataToEdit.material)&thickness=\(tableDataToEdit.thickness)&length=\(tableDataToEdit.length)&width=\(tableDataToEdit.width)&quantity=\(tableDataToEdit.quantity)&allocated=\(tableDataToEdit.allocated)"
+                    request.httpBody = postString.data(using: .utf8)
+                    let task = URLSession.shared.dataTask(with: request) { data, response, error in
+                        guard let data = data, error == nil else {
+                            print(error?.localizedDescription ?? "No data")
+                            return
+                        }
+                        let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
+                        if let responseJSON = responseJSON as? [String: Any] {
+                            print(responseJSON)
+                        }
                     }
+                    task.resume()
+
                     isPresented = nil
                 }, label: {
                     Text("Save Changes")
