@@ -197,7 +197,11 @@ struct EditTableRowView: View {
         NavigationView {
             Form {
                 Section(header: Text("Material: \(previousTableData.material)")) {
-                    TextField("Material", text: $tableDataToEdit.material)
+                    Picker("Material", selection: $tableDataToEdit.material) {
+                        ForEach(TableData.Material.allCases) { material in
+                            Text(material.rawValue).tag(material)
+                        }
+                    }
                 }
                 Section(header: Text("Thickness: \(previousTableData.thickness)")) {
                     TextField("Thickness", text: $tableDataToEdit.thickness)
