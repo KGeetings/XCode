@@ -158,10 +158,18 @@ struct AddTableRowView: View {
         NavigationView {
             Form {
                 Section(header: Text("Material")) {
-                    TextField("Material", text: $material)
+                    Picker("Material", selection: $material) {
+                        ForEach(materials, id: \.self) { material in
+                            Text(material)
+                        }
+                    }
                 }
                 Section(header: Text("Thickness")) {
-                    TextField("Thickness", text: $thickness)
+                    Picker("Thickness", selection: $thickness) {
+                        ForEach(thicknesses, id: \.self) { thickness in
+                            Text(thickness)
+                        }
+                    }
                 }
                 Section(header: Text("Length")) {
                     TextField("Length", value: $length, formatter: numberFormatter)
@@ -204,7 +212,11 @@ struct EditTableRowView: View {
                     }
                 }
                 Section(header: Text("Thickness: \(previousTableData.thickness)")) {
-                    TextField("Thickness", text: $tableDataToEdit.thickness)
+                    Picker("Thickness", selection: $tableDataToEdit.thickness) {
+                        ForEach(Filter.Thickness.allCases) { thickness in
+                            Text(thickness.rawValue).tag(thickness)
+                        }
+                    }
                 }
                 Section(header: Text("Length: \(previousTableData.length)")) {
                     TextField("Length", value: $tableDataToEdit.length, formatter: numberFormatter)
