@@ -6,7 +6,7 @@ struct Filter {
     var thicknessFilter = Thickness.all
     var sheetSizeFilter = SheetSize.all
 
-    static let 'default' = Filter(search: "")
+    //static let "defaultFilter" = Filter(search: "")
 
     enum Material: String, CaseIterable, Identifiable {
         case all = "All"
