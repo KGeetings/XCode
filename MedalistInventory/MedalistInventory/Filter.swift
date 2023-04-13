@@ -35,7 +35,7 @@ struct Filter {
         case thickness075 = "0.075 (14GA)"
         case thickness08 = "0.08 (SHIM)"
         case thickness09 = "0.09 (13GA)"
-        case thickness1 = "0.1"
+        case thickness01 = "0.1"
         case thickness105 = "0.105 (12GA)"
         case thickness12 = "0.12 (11GA)"
         case thickness135 = "0.135 (10GA)"

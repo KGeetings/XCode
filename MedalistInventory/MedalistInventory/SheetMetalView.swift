@@ -87,14 +87,20 @@ struct SheetMetalView: View {
                     })
                     .padding(.horizontal, 10)
                 }
+                // TODO
                 // Add a Picker here for filtering by material
-                Picker("Material", selection: $filter.materialFilter) {
-                    ForEach(Filter.Material.allCases) { material in
-                        Text(material.rawValue).tag(material)
-                    }
-                }
-
-                // Add a Picker here for filtering by thickness
+//                Picker("Material", selection: $filter.materialFilter) {
+//                    ForEach(Filter.Material.allCases) { material in
+//                        Text(material.rawValue).tag(material)
+//                    }
+//                }
+//
+//                // Add a Picker here for filtering by thickness
+//                Picker("Thickness", selection: $filter.thicknessFilter) {
+//                    ForEach(Filter.Thickness.allCases) { thickness in
+//                        Text(thickness.rawValue).tag(thickness)
+//                    }
+//                }
                 // Add a Picker here for filtering by All, Fullsheets, or Remnants
                 .padding(.horizontal, 10)
                 List(filteredTableData) { data in
@@ -159,15 +165,15 @@ struct AddTableRowView: View {
             Form {
                 Section(header: Text("Material")) {
                     Picker("Material", selection: $material) {
-                        ForEach(materials, id: \.self) { material in
-                            Text(material)
+                        ForEach(Filter.Material.allCases) { material in
+                            Text(material.rawValue).tag(material)
                         }
                     }
                 }
                 Section(header: Text("Thickness")) {
                     Picker("Thickness", selection: $thickness) {
-                        ForEach(thicknesses, id: \.self) { thickness in
-                            Text(thickness)
+                        ForEach(Filter.Thickness.allCases) { thickness in
+                            Text(thickness.rawValue).tag(thickness)
                         }
                     }
                 }
