@@ -153,8 +153,8 @@ struct AddTableRowView: View {
     @Binding var tableData: [TableData]
     @Binding var isPresented: Bool
     @State var id: Int = 0
-    @State var material: String = ""
-    @State var thickness: String = ""
+    @State var material: String = "All"
+    @State var thickness: String = "All"
     @State var length: Double = 0
     @State var width: Double = 0
     @State var quantity: Int = 0
@@ -190,9 +190,9 @@ struct AddTableRowView: View {
                     TextField("Allocated", value: $allocated, formatter: NumberFormatter())
                 }
                 Button(action: {
-                    // Check if Length, Width, Quantity, and Allocated are all positive numbers
-                    guard length > 0 && width > 0 && quantity > 0 && allocated > 0 else {
-                        print("Length, Width, Quantity, and Allocated must all be positive numbers")
+                    // Check if Length, Width, Quantity are all positive numbers
+                    guard length > 0 && width > 0 && quantity > 0 else {
+                        print("Length, Width, Quantity must all be positive numbers")
                         return
                     }
 
@@ -212,7 +212,6 @@ struct AddTableRowView: View {
                     let url = URL(string: "http://10.0.2.3/database_query_mobileapps.php")!
                     var request = URLRequest(url: url)
                     request.httpMethod = "POST"
-                    //data: {task: 'insert', schema: 'sheet_metal_inventory', material: document.getElementById("material-select").value, thickness: document.getElementById("thickness-select").value, length: document.getElementById("length-input").value, width: document.getElementById("width-input").value, quantity: document.getElementById("quantity-input").value},
                     let postString = "taks=insert&schema=sheet_metal_inventory&material=\(material)&thickness=\(thickness)&length=\(length)&width=\(width)&quantity=\(quantity)"
                     request.httpBody = postString.data(using: .utf8)
                     let task = URLSession.shared.dataTask(with: request) { data, response, error in
@@ -303,7 +302,7 @@ struct EditTableRowView: View {
                     Text("Save Changes")
                 })
             }
-            //.navigationBarTitle("\(tableDataToEdit.material) - \(tableDataToEdit.thickness)")
+            .navigationBarTitle("Edit Row")
         }
     }
 }
