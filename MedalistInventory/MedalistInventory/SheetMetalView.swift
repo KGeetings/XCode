@@ -158,7 +158,6 @@ struct AddTableRowView: View {
     @State var length: Double = 0
     @State var width: Double = 0
     @State var quantity: Int = 0
-    @State var allocated: Int = 0
     
     var body: some View {
         NavigationView {
