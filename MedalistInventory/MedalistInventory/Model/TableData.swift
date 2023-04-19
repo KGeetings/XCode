@@ -6,3 +6,13 @@
 //
 
 import Foundation
+
+struct TableData: Codable, Identifiable {
+    var id: Int
+    var material: String
+    var thickness: String
+    var length: Double
+    var width: Double
+    var quantity: Int
+    var allocated: Int
+}
