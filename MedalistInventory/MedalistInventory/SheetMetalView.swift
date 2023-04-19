@@ -186,9 +186,6 @@ struct AddTableRowView: View {
                 Section(header: Text("Quantity")) {
                     TextField("Quantity", value: $quantity, formatter: NumberFormatter())
                 }
-                Section(header: Text("Allocated")) {
-                    TextField("Allocated", value: $allocated, formatter: NumberFormatter())
-                }
                 Button(action: {
                     // Check if Length, Width, Quantity are all positive numbers
                     guard length > 0 && width > 0 && quantity > 0 else {
@@ -212,7 +209,7 @@ struct AddTableRowView: View {
                     let url = URL(string: "http://10.0.2.3/database_query_mobileapps.php")!
                     var request = URLRequest(url: url)
                     request.httpMethod = "POST"
-                    let postString = "taks=insert&schema=sheet_metal_inventory&material=\(material)&thickness=\(thickness)&length=\(length)&width=\(width)&quantity=\(quantity)"
+                    let postString = "task=insert&schema=sheet_metal_inventory&material=\(material)&thickness=\(thickness)&length=\(length)&width=\(width)&quantity=\(quantity)"
                     request.httpBody = postString.data(using: .utf8)
                     let task = URLSession.shared.dataTask(with: request) { data, response, error in
                         guard let data = data, error == nil else {
