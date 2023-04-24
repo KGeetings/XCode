@@ -2,7 +2,7 @@ import Foundation
 
 import Foundation
 
-struct SheetMetalData: Codable {
+struct SheetMetalData: Codable, Identifiable {
     let id: Int
     let material: String
     let thickness: String

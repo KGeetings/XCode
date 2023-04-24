@@ -26,6 +26,7 @@ struct ContentView: View {
                 }
                 .tag(Tab.extraParts)
         }
+        .onAppear { tableData.load() }
     }
 }
 
