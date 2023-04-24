@@ -68,10 +68,10 @@ struct SheetMetalView: View {
                 }
             }
             .navigationBarTitle("Sheet Metal Inv.")
-//            .sheet(isPresented: $showAddRowModal, content: {
-//                // Present Add Row Modal
-//                AddTableRowView(tableData: $tableData, isPresented: $showAddRowModal)
-//            })
+            .sheet(isPresented: $showAddRowModal, content: {
+                // Present Add Row Modal
+                SheetMetalAddRow(isPresented: $showAddRowModal)
+            })
 //            .sheet(item: $selectedTableData) { data in
 //                // Present Edit Row Modal
 //                EditTableRowView(tableData: $tableData, previousTableData: data, tableDataToEdit: data, isPresented: $selectedTableData)
@@ -98,7 +98,7 @@ let numberFormatter: NumberFormatter = {
 }()
 
 struct AddTableRowView: View {
-    @Binding var tableData: [TableData]
+    @ObservedObject var tableData: TableData = TableData()
     @Binding var isPresented: Bool
     @State var id: Int = 0
     @State var material: String = "All"
@@ -170,6 +170,9 @@ struct AddTableRowView: View {
                     }
                     task.resume()
 
+                    // Reload the tableData
+                    tableData.load()
+                    
                     isPresented = false
                 }, label: {
                     Text("Add Row")
