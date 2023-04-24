@@ -2,6 +2,7 @@ import SwiftUI
 
 struct ContentView: View {
     @State private var selection: Tab = .sheetMetal
+    @ObservedObject var tableData: TableData = TableData()
     
     enum Tab {
         case sheetMetal
@@ -14,7 +15,7 @@ struct ContentView: View {
     
     var body: some View {
         TabView(selection: $selection) {
-            SheetMetalView(filter: .constant(Filter(search: "")))
+            SheetMetalView(tableData: tableData, filter: .constant(Filter(search: "")))
                 .tabItem {
                     Label("Sheet Metal", systemImage: "square.stack.3d.up.fill")
                 }
