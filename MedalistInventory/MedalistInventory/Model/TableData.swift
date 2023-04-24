@@ -27,19 +27,19 @@ class TableData: ObservableObject {
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             if let error = error {
                 print("Failed to load table data from server: \(error.localizedDescription)")
-                fallbackToLocalJSONFile()
+                self.fallbackToLocalJSONFile()
                 return
             }
             
             guard let httpResponse = response as? HTTPURLResponse else {
                 print("Invalid response")
-                fallbackToLocalJSONFile()
+                self.fallbackToLocalJSONFile()
                 return
             }
             
             guard (200...299).contains(httpResponse.statusCode) else {
                 print("HTTP Error: \(httpResponse.statusCode)")
-                fallbackToLocalJSONFile()
+                self.fallbackToLocalJSONFile()
                 return
             }
             
@@ -52,10 +52,10 @@ class TableData: ObservableObject {
                     }
                 } catch {
                     print("Error decoding JSON: \(error.localizedDescription)")
-                    fallbackToLocalJSONFile()
+                    self.fallbackToLocalJSONFile()
                 }
             } else {
-                fallbackToLocalJSONFile()
+                self.fallbackToLocalJSONFile()
             }
         }
         
