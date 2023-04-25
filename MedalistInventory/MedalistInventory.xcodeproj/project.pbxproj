@@ -18,6 +18,7 @@
 		48ED613829F03FED00C14F35 /* TableData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48ED613729F03FEB00C14F35 /* TableData.swift */; };
 		48ED613C29F04DDE00C14F35 /* ModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48ED613B29F04DDE00C14F35 /* ModelData.swift */; };
 		48ED613E29F6EA5000C14F35 /* SheetMetalAddRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48ED613D29F6EA4F00C14F35 /* SheetMetalAddRow.swift */; };
+		48ED614029F7576000C14F35 /* SheetMetalEditRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48ED613F29F7575D00C14F35 /* SheetMetalEditRow.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +34,7 @@
 		48ED613729F03FEB00C14F35 /* TableData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableData.swift; sourceTree = "<group>"; };
 		48ED613B29F04DDE00C14F35 /* ModelData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelData.swift; sourceTree = "<group>"; };
 		48ED613D29F6EA4F00C14F35 /* SheetMetalAddRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetMetalAddRow.swift; sourceTree = "<group>"; };
+		48ED613F29F7575D00C14F35 /* SheetMetalEditRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetMetalEditRow.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +75,7 @@
 				48ED613429E7AA0700C14F35 /* Filter.swift */,
 				48649FBA29B5A1E000F6C29A /* ContentView.swift */,
 				48649FC629B5A20E00F6C29A /* SheetMetalView.swift */,
+				48ED613F29F7575D00C14F35 /* SheetMetalEditRow.swift */,
 				48ED613D29F6EA4F00C14F35 /* SheetMetalAddRow.swift */,
 				4868837729D366A0003C2FFD /* ExtraPartsView.swift */,
 			);
@@ -182,6 +185,7 @@
 				48649FC729B5A20F00F6C29A /* SheetMetalView.swift in Sources */,
 				48649FB929B5A1E000F6C29A /* MedalistInventoryApp.swift in Sources */,
 				48ED613E29F6EA5000C14F35 /* SheetMetalAddRow.swift in Sources */,
+				48ED614029F7576000C14F35 /* SheetMetalEditRow.swift in Sources */,
 				48ED613C29F04DDE00C14F35 /* ModelData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
