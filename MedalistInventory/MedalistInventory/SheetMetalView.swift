@@ -82,13 +82,11 @@ struct SheetMetalView: View {
     }
 }
 
-//struct SheetMetalView_Previews: PreviewProvider {
-//    @ObservedObject var tableData: TableData = TableData()
-//
-//    static var previews: some View {
-//        SheetMetalView(tableData: tableData.sheetMetalData, filter: .constant(Filter(search: "")))
-//    }
-//}
+struct SheetMetalView_Previews: PreviewProvider {
+    static var previews: some View {
+        SheetMetalView(tableData: TableData(), filter: .constant(Filter(search: "")))
+    }
+}
 
 let numberFormatter: NumberFormatter = {
     let numberFormatter = NumberFormatter()

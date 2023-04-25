@@ -93,8 +93,8 @@ struct SheetMetalAddRow: View {
     }
 }
 
-//struct SheetMetalAddRow_Previews: PreviewProvider {
-//    static var previews: some View {
-//        SheetMetalAddRow(isPresented: Binding<Bool>:true)
-//    }
-//}
+struct SheetMetalAddRow_Previews: PreviewProvider {
+    static var previews: some View {
+        SheetMetalAddRow(isPresented: .constant(true))
+    }
+}
