@@ -1,17 +1,10 @@
-//
-//  SheetMetalEditRow.swift
-//  Medalist
-//
-//  Created by Kenyon on 4/24/23.
-//
-
 import SwiftUI
 
 struct SheetMetalEditRow: View {
     @Binding var tableData: [TableData]
-    @State var previousTableData: TableData
+    @Binding var selectedTableData: TableData
+    // Store the new values in a temporary variable
     @State var tableDataToEdit: TableData
-    @Binding var isPresented: TableData?
     var body: some View {
         NavigationView {
             Form {
@@ -78,8 +71,8 @@ struct SheetMetalEditRow: View {
     }
 }
 
-//struct SheetMetalEditRow_Previews: PreviewProvider {
-//    static var previews: some View {
-//        SheetMetalEditRow()
-//    }
-//}
+struct SheetMetalEditRow_Previews: PreviewProvider {
+    static var previews: some View {
+        SheetMetalEditRow(tableData: .constant([TableData]()), selectedTableData: .constant(TableData()), tableDataToEdit: TableData())
+    }
+}

@@ -4,7 +4,6 @@ struct SheetMetalView: View {
     @State var searchText: String = ""
     @State var showAddRowModal: Bool = false
     @State var selectedTableData: SheetMetalData?
-    //@State var tableData = [TableData]()
     @ObservedObject var tableData: TableData = TableData()
     @Binding var filter: Filter
     
@@ -72,10 +71,11 @@ struct SheetMetalView: View {
                 // Present Add Row Modal
                 SheetMetalAddRow(isPresented: $showAddRowModal)
             })
-//            .sheet(item: $selectedTableData) { data in
-//                // Present Edit Row Modal
-//                SheetMetalEditRow(tableData: $tableData, previousTableData: data, tableDataToEdit: data, isPresented: $selectedTableData)
-//            }
+            .sheet(item: $selectedTableData) { data in
+                // Present Edit Row Modal
+                SheetMetalEditRow(tableData: data, selectedTableData: $selectedTableData, tableDataToEdit: $selectedTableData)
+                //(tableData: $tableData, previousTableData: data, tableDataToEdit: data, isPresented: $selectedTableData)
+            }
         }
         //.onAppear(perform: loadData)
         .onAppear { tableData.load() }

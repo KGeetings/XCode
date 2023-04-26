@@ -1,10 +1,3 @@
-//
-//  SheetMetalAddRow.swift
-//  Medalist
-//
-//  Created by Kenyon on 4/24/23.
-//
-
 import SwiftUI
 
 struct SheetMetalAddRow: View {
