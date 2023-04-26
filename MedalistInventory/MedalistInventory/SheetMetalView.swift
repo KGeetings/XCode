@@ -73,7 +73,7 @@ struct SheetMetalView: View {
             })
             .sheet(item: $selectedTableData) { data in
                 // Present Edit Row Modal
-                SheetMetalEditRow(tableData: data, selectedTableData: $selectedTableData, tableDataToEdit: $selectedTableData)
+                SheetMetalEditRow(selectedTableData: $selectedTableData, tableDataToEdit: $selectedTableData)
                 //(tableData: $tableData, previousTableData: data, tableDataToEdit: data, isPresented: $selectedTableData)
             }
         }
