@@ -4,46 +4,60 @@ struct SheetMetalEditRow: View {
     //@Binding var tableData: [SheetMetalData]?
     @Binding var selectedTableData: SheetMetalData?
     // Store the new values in a temporary variable
-    @Binding var tableDataToEdit: SheetMetalData?
+    @Binding var tableDataToEdit: SheetMetalData
     var body: some View {
         NavigationView {
             Form {
-                Section(header: Text("Material: \(selectedTableData.material)")) {
-                    Picker("Material", selection: tableDataToEdit.material) {
-                        ForEach(Filter.Material.allCases) { material in
+                Section(header: Text("Material: \(selectedTableData?.material ?? "")")) {
+                    Picker("Material", selection: $tableDataToEdit.material) {
+                        ForEach(Filter.Material.allCases, id: \.self) { material in
                             Text(material.rawValue).tag(material)
                         }
                     }
                 }
-                Section(header: Text("Thickness: \(selectedTableData.thickness)")) {
+
+                Section(header: Text("Thickness: \(selectedTableData?.thickness ?? "")")) {
                     Picker("Thickness", selection: $tableDataToEdit.thickness) {
-                        ForEach(Filter.Thickness.allCases) { thickness in
+                        ForEach(Filter.Thickness.allCases, id: \.self) { thickness in
                             Text(thickness.rawValue).tag(thickness)
                         }
                     }
                 }
-                Section(header: Text("Length: \(selectedTableData.length)")) {
+
+                Section(header: Text("Length: \(selectedTableData?.length ?? "")")) {
                     TextField("Length", value: $tableDataToEdit.length, formatter: numberFormatter)
+                        .keyboardType(.decimalPad)
                 }
-                Section(header: Text("Width: \(selectedTableData.width)")) {
+
+                Section(header: Text("Width: \(selectedTableData?.width ?? "")")) {
                     TextField("Width", value: $tableDataToEdit.width, formatter: numberFormatter)
+                        .keyboardType(.decimalPad)
                 }
-                Section(header: Text("Quantity: \(selectedTableData.quantity)")) {
+
+                Section(header: Text("Quantity: \(selectedTableData?.quantity ?? "")")) {
                     TextField("Quantity", value: $tableDataToEdit.quantity, formatter: NumberFormatter())
+                        .keyboardType(.numberPad)
                 }
-                Section(header: Text("Allocated: \(selectedTableData.allocated)")) {
+
+                Section(header: Text("Allocated: \(selectedTableData?.allocated ?? "")")) {
                     TextField("Allocated", value: $tableDataToEdit.allocated, formatter: NumberFormatter())
+                        .keyboardType(.numberPad)
                 }
+
                 Button(action: {
-                    // Check if Length, Width, Quantity, and Allocated are all positive numbers
-                    guard tableDataToEdit.length > 0 && tableDataToEdit.width > 0 else { return }
-                    guard tableDataToEdit.length < 125 && tableDataToEdit.width < 125 else { return }
-                    guard tableDataToEdit.quantity >= 0 else { return }
+                    guard tableDataToEdit.length > 0 && tableDataToEdit.width > 0 else {
+                        return
+                    }
+                    guard tableDataToEdit.length < 125 && tableDataToEdit.width < 125 else {
+                        return
+                    }
+                    guard tableDataToEdit.quantity >= 0 else {
+                        return
+                    }
+                    guard tableDataToEdit.length >= tableDataToEdit.width else {
+                        return
+                    }
 
-                    // Check if Lenght is greater than or equal to Width
-                    guard tableDataToEdit.length >= tableDataToEdit.width else { return }
-
-                    // Use database_query.php to update the row in the database
                     let url = URL(string: "http://10.0.2.3/database_query_mobileapps.php")!
                     var request = URLRequest(url: url)
                     request.httpMethod = "POST"
@@ -61,7 +75,6 @@ struct SheetMetalEditRow: View {
                     }
                     task.resume()
 
-                    //isPresented = nil
                 }, label: {
                     Text("Save Changes")
                 })
