@@ -8,22 +8,13 @@ struct SheetMetalView: View {
     @State var showAddRowModal: Bool = false
     @State var selectedTableData: SheetMetalData?
     @ObservedObject var tableData: TableData = TableData()
-    @Binding var filter: Filter
+    //@Binding var filter: Filter
 
     var filteredTableData: [SheetMetalData] {
-        // Filter the data based on the current state of the filter
-        tableData.data.filter { data in
-            // Filter by search text
-            filterSearchText.isEmpty || data.material.localizedCaseInsensitiveContains(filterSearchText)
-                || data.thickness.localizedCaseInsensitiveContains(filterSearchText)
-                || data.length.description.localizedCaseInsensitiveContains(filterSearchText)
-                || data.width.description.localizedCaseInsensitiveContains(filterSearchText)
-            // Filter by material
-            && (filter.materialFilter == .all || data.material == filter.materialFilter.rawValue)
-            // Filter by thickness
-            && (filter.thicknessFilter == .all || data.thickness == filter.thicknessFilter.rawValue)
-            // Filter by sheet size
-            && (filter.sheetSizeFilter == .all || (filter.sheetSizeFilter == .fullsheet && data.isFullSheet) || (filter.sheetSizeFilter == .remnant && !data.isFullSheet))
+        if filterSearchText.isEmpty {
+            return tableData.sheetMetalData
+        } else {
+            return tableData.sheetMetalData.filter { $0.material.localizedCaseInsensitiveContains(filterSearchText) || $0.thickness.localizedCaseInsensitiveContains(filterSearchText)}
         }
     }
     
@@ -45,14 +36,14 @@ struct SheetMetalView: View {
                 }
                 // TODO
                 // Add a Picker here for filtering by material
-                Picker("Material", selection: $filter.materialFilter) {
+                Picker("Material", selection: $filterMaterial) {
                     ForEach(Filter.Material.allCases) { material in
                         Text(material.rawValue).tag(material)
                     }
                 }
 
                 // Add a Picker here for filtering by thickness
-                Picker("Thickness", selection: $filter.thicknessFilter) {
+                Picker("Thickness", selection: $filterThickness) {
                     ForEach(Filter.Thickness.allCases) { thickness in
                         Text(thickness.rawValue).tag(thickness)
                     }
@@ -94,6 +85,6 @@ struct SheetMetalView: View {
 
 struct SheetMetalView_Previews: PreviewProvider {
     static var previews: some View {
-        SheetMetalView(tableData: TableData(), filter: .constant(Filter(search: "")))
+        SheetMetalView(tableData: TableData())
     }
 }

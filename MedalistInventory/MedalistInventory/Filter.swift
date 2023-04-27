@@ -1,13 +1,6 @@
 import Foundation
 
 struct Filter {
-    var search: String
-    var materialFilter = Material.all
-    var thicknessFilter = Thickness.all
-    var sheetSizeFilter = SheetSize.all
-
-    //static let "defaultFilter" = Filter(search: "")
-
     enum Material: String, CaseIterable, Identifiable {
         case all = "All"
         case aluminum3003 = "Aluminum 3003"

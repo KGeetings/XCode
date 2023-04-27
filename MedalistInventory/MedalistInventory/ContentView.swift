@@ -15,7 +15,7 @@ struct ContentView: View {
     
     var body: some View {
         TabView(selection: $selection) {
-            SheetMetalView(tableData: tableData, filter: .constant(Filter(search: "")))
+            SheetMetalView(tableData: tableData)
                 .tabItem {
                     Label("Sheet Metal", systemImage: "square.stack.3d.up.fill")
                 }
