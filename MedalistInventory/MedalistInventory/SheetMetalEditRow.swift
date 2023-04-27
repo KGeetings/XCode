@@ -2,7 +2,7 @@ import SwiftUI
 
 struct SheetMetalEditRow: View {
     @ObservedObject var tableData: TableData = TableData()
-    @Binding var selectedTableData: SheetMetalData
+    @Binding var selectedTableData: SheetMetalData?
     @State var tableDataToEdit: SheetMetalData
     @Environment(\.presentationMode) var presentationMode
     var body: some View {
