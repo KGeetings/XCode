@@ -124,7 +124,7 @@ struct SheetMetalView: View {
             })
             .sheet(item: $selectedTableData) { data in
                 // Present Edit Row Modal
-                SheetMetalEditRow(selectedTableData: $selectedTableData, tableDataToEdit: selectedTableData!)
+                SheetMetalEditRow(selectedTableData: $selectedTableData, tableDataToEdit: data)
             }
         }
         .onAppear { tableData.load() }
