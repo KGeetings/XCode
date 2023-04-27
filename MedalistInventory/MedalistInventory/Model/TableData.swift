@@ -20,6 +20,13 @@ struct ExtraPartsData: Codable, Identifiable {
     let maxquantity: Int
 }
 
+let numberFormatter: NumberFormatter = {
+    let numberFormatter = NumberFormatter()
+    numberFormatter.numberStyle = .decimal
+    numberFormatter.maximumFractionDigits = 2
+    return numberFormatter
+}()
+
 class TableData: ObservableObject {
     @Published var sheetMetalData: [SheetMetalData] = []
     @Published var extraPartsData: [ExtraPartsData] = []

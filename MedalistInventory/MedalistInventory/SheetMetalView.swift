@@ -1,26 +1,21 @@
 import SwiftUI
 
 struct SheetMetalView: View {
-    @State var searchText: String = ""
+    @State var filterSearchText: String = ""
+    @State var filterMaterial: String = ""
+    @State var filterThickness: String = ""
+    @State var filterSheetSize: String = ""
     @State var showAddRowModal: Bool = false
     @State var selectedTableData: SheetMetalData?
     @ObservedObject var tableData: TableData = TableData()
     @Binding var filter: Filter
     
-//    var filteredTableData: [TableData] {
-//        if searchText.isEmpty {
-//            return tableData
-//        } else {
-//            return tableData.filter { $0.material.localizedCaseInsensitiveContains(searchText) || $0.thickness.localizedCaseInsensitiveContains(searchText)}
-//        }
-//    }
-    
     var body: some View {
         NavigationStack {
             VStack {
                 HStack {
-                    TextField("Search", text: $searchText)
-                        .padding(.horizontal, 10)
+                    TextField("Search", text: $filterSearchText)
+                        .padding(.horizontal, 20)
                         .padding(.vertical, 5)
                         .background(Color.gray.opacity(0.2))
                         .cornerRadius(5)
@@ -29,25 +24,25 @@ struct SheetMetalView: View {
                             .resizable()
                             .frame(width: 30, height: 30)
                     })
-                    .padding(.horizontal, 10)
+                    .padding(.horizontal, 20)
                 }
                 // TODO
                 // Add a Picker here for filtering by material
-//                Picker("Material", selection: $filter.materialFilter) {
-//                    ForEach(Filter.Material.allCases) { material in
-//                        Text(material.rawValue).tag(material)
-//                    }
-//                }
-//
-//                // Add a Picker here for filtering by thickness
-//                Picker("Thickness", selection: $filter.thicknessFilter) {
-//                    ForEach(Filter.Thickness.allCases) { thickness in
-//                        Text(thickness.rawValue).tag(thickness)
-//                    }
-//                }
+                Picker("Material", selection: $filter.materialFilter) {
+                    ForEach(Filter.Material.allCases) { material in
+                        Text(material.rawValue).tag(material)
+                    }
+                }
+
+                // Add a Picker here for filtering by thickness
+                Picker("Thickness", selection: $filter.thicknessFilter) {
+                    ForEach(Filter.Thickness.allCases) { thickness in
+                        Text(thickness.rawValue).tag(thickness)
+                    }
+                }
                 // Add a Picker here for filtering by All, Fullsheets, or Remnants
                 .padding(.horizontal, 10)
-                List(tableData.sheetMetalData, id: \.id) { data in
+                List(filteredTableData, id: \.id) { data in
                     Button(action: {
                         selectedTableData = data
                     }, label: {
@@ -78,6 +73,14 @@ struct SheetMetalView: View {
         }
         .onAppear { tableData.load() }
     }
+    
+    var filteredTableData: [SheetMetalData] {
+        if filterSearchText.isEmpty {
+            return tableData.sheetMetalData
+        } else {
+            return tableData.sheetMetalData.filter { $0.material.localizedCaseInsensitiveContains(filterSearchText) || $0.thickness.localizedCaseInsensitiveContains(filterSearchText)}
+        }
+    }
 }
 
 struct SheetMetalView_Previews: PreviewProvider {
@@ -85,12 +88,3 @@ struct SheetMetalView_Previews: PreviewProvider {
         SheetMetalView(tableData: TableData(), filter: .constant(Filter(search: "")))
     }
 }
-
-let numberFormatter: NumberFormatter = {
-    let numberFormatter = NumberFormatter()
-    numberFormatter.numberStyle = .decimal
-    numberFormatter.maximumFractionDigits = 2
-    return numberFormatter
-}()
-
-

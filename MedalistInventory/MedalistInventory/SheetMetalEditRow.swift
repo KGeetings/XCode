@@ -1,8 +1,10 @@
 import SwiftUI
 
 struct SheetMetalEditRow: View {
+    @ObservedObject var tableData: TableData = TableData()
     @Binding var selectedTableData: SheetMetalData?
     @State var tableDataToEdit: SheetMetalData
+    @Environment(\.presentationMode) var presentationMode
     var body: some View {
         NavigationView {
             Form {
@@ -72,6 +74,11 @@ struct SheetMetalEditRow: View {
                         }
                     }
                     task.resume()
+                    
+                    // Reload the tableData
+                    tableData.load()
+                    
+                    self.presentationMode.wrappedValue.dismiss()
                 }, label: {
                     Text("Save Changes")
                 })
@@ -81,8 +88,9 @@ struct SheetMetalEditRow: View {
     }
 }
 
-//struct SheetMetalEditRow_Previews: PreviewProvider {
-//    static var previews: some View {
-//        SheetMetalEditRow(selectedTableData: .constant(SheetMetalData()), tableDataToEdit: SheetMetalData)
-//    }
-//}
+struct SheetMetalEditRow_Previews: PreviewProvider {
+    static var previews: some View {
+        let selectedTableData = SheetMetalData(id: 1, material: "Aluminum Expanded Metal", thickness: "0.02 (SHIM)", length: 120.0, width: 60.0, quantity: 10, allocated: 10)
+        SheetMetalEditRow(selectedTableData: .constant(selectedTableData), tableDataToEdit: selectedTableData)
+    }
+}
