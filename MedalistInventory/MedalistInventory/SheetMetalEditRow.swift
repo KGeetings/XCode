@@ -1,16 +1,14 @@
 import SwiftUI
 
 struct SheetMetalEditRow: View {
-    //@Binding var tableData: [SheetMetalData]?
     @Binding var selectedTableData: SheetMetalData?
-    // Store the new values in a temporary variable
     @State var tableDataToEdit: SheetMetalData
     var body: some View {
         NavigationView {
             Form {
                 Section(header: Text("Material: \(selectedTableData?.material ?? "")")) {
                     Picker("Material", selection: $tableDataToEdit.material) {
-                        ForEach(Filter.Material.allCases, id: \.self) { material in
+                        ForEach(Filter.Material.allCases) { material in
                             Text(material.rawValue).tag(material)
                         }
                     }
@@ -18,7 +16,7 @@ struct SheetMetalEditRow: View {
 
                 Section(header: Text("Thickness: \(selectedTableData?.thickness ?? "")")) {
                     Picker("Thickness", selection: $tableDataToEdit.thickness) {
-                        ForEach(Filter.Thickness.allCases, id: \.self) { thickness in
+                        ForEach(Filter.Thickness.allCases) { thickness in
                             Text(thickness.rawValue).tag(thickness)
                         }
                     }
@@ -74,7 +72,6 @@ struct SheetMetalEditRow: View {
                         }
                     }
                     task.resume()
-
                 }, label: {
                     Text("Save Changes")
                 })
