@@ -4,7 +4,7 @@ struct SheetMetalEditRow: View {
     //@Binding var tableData: [SheetMetalData]?
     @Binding var selectedTableData: SheetMetalData?
     // Store the new values in a temporary variable
-    @Binding var tableDataToEdit: SheetMetalData
+    @State var tableDataToEdit: SheetMetalData
     var body: some View {
         NavigationView {
             Form {
@@ -24,22 +24,22 @@ struct SheetMetalEditRow: View {
                     }
                 }
 
-                Section(header: Text("Length: \(selectedTableData?.length ?? "")")) {
+                Section(header: Text("Length: \(selectedTableData?.length ?? 0)")) {
                     TextField("Length", value: $tableDataToEdit.length, formatter: numberFormatter)
                         .keyboardType(.decimalPad)
                 }
 
-                Section(header: Text("Width: \(selectedTableData?.width ?? "")")) {
+                Section(header: Text("Width: \(selectedTableData?.width ?? 0)")) {
                     TextField("Width", value: $tableDataToEdit.width, formatter: numberFormatter)
                         .keyboardType(.decimalPad)
                 }
 
-                Section(header: Text("Quantity: \(selectedTableData?.quantity ?? "")")) {
+                Section(header: Text("Quantity: \(selectedTableData?.quantity ?? 0)")) {
                     TextField("Quantity", value: $tableDataToEdit.quantity, formatter: NumberFormatter())
                         .keyboardType(.numberPad)
                 }
 
-                Section(header: Text("Allocated: \(selectedTableData?.allocated ?? "")")) {
+                Section(header: Text("Allocated: \(selectedTableData?.allocated ?? 0)")) {
                     TextField("Allocated", value: $tableDataToEdit.allocated, formatter: NumberFormatter())
                         .keyboardType(.numberPad)
                 }
@@ -86,6 +86,6 @@ struct SheetMetalEditRow: View {
 
 //struct SheetMetalEditRow_Previews: PreviewProvider {
 //    static var previews: some View {
-//        SheetMetalEditRow(tableData: .constant([SheetMetalData]()), selectedTableData: .constant(SheetMetalData()), tableDataToEdit: SheetMetalData())
+//        SheetMetalEditRow(selectedTableData: .constant(SheetMetalData()), tableDataToEdit: SheetMetalData)
 //    }
 //}

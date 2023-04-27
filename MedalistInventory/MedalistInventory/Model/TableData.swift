@@ -1,13 +1,13 @@
 import Foundation
 
 struct SheetMetalData: Codable, Identifiable {
-    let id: Int
-    let material: String
-    let thickness: String
-    let length: Double
-    let width: Double
-    let quantity: Int
-    let allocated: Int
+    var id: Int
+    var material: String
+    var thickness: String
+    var length: Double
+    var width: Double
+    var quantity: Int
+    var allocated: Int
 }
 
 struct ExtraPartsData: Codable, Identifiable {
