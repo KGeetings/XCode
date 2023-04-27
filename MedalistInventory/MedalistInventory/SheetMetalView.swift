@@ -8,8 +8,7 @@ struct SheetMetalView: View {
     @State var showAddRowModal: Bool = false
     @State var selectedTableData: SheetMetalData?
     @ObservedObject var tableData: TableData = TableData()
-    //@Binding var filter: Filter
-
+    
     var filteredTableData: [SheetMetalData] {
         var result = tableData.sheetMetalData
         
@@ -25,12 +24,22 @@ struct SheetMetalView: View {
         
         // Filter by sheet size
         if !filterSheetSize.isEmpty && filterSheetSize != "All" {
-            if filterSheetSize == "Fullsheet" {
+            if filterSheetSize == "Fullsheets" {
                 //return (length == 120.0 && width == 60.0) || (length == 120.0 && width == 48.0) || (length == 96.0 && width == 60.0) || (length == 96.0 && width == 48.0);
-                result = result.filter { $0.length == 120.0 && $0.width == 60.0 || $0.length == 120.0 && $0.width == 48.0 || $0.length == 96.0 && $0.width == 60.0 || $0.length == 96.0 && $0.width == 48.0}
-            } else if filterSheetSize == "Remnant" {
+                result = result.filter {
+                    ($0.length == 120.0 && $0.width == 60.0) ||
+                    ($0.length == 120.0 && $0.width == 48.0) ||
+                    ($0.length == 96.0 && $0.width == 60.0) ||
+                    ($0.length == 96.0 && $0.width == 48.0)
+                }
+            } else if filterSheetSize == "Remnants" {
                 //return !(length == 120.0 && width == 60.0) && !(length == 120.0 && width == 48.0) && !(length == 96.0 && width == 60.0) && !(length == 96.0 && width == 48.0);
-                result = result.filter { $0.length != 120.0 && $0.width != 60.0 && $0.length != 120.0 && $0.width != 48.0 && $0.length != 96.0 && $0.width != 60.0 && $0.length != 96.0 && $0.width != 48.0}
+                result = result.filter {
+                    ($0.length != 120.0 && $0.width != 60.0) &&
+                    ($0.length != 120.0 && $0.width != 48.0) &&
+                    ($0.length != 96.0 && $0.width != 60.0) &&
+                    ($0.length != 96.0 && $0.width != 48.0)
+                }
             }
         }
         
@@ -41,7 +50,7 @@ struct SheetMetalView: View {
         
         return result
     }
-
+    
     
     var body: some View {
         NavigationStack {
@@ -69,7 +78,7 @@ struct SheetMetalView: View {
                         Text(material.rawValue).tag(material)
                     }
                 }
-
+                
                 // Add a Picker here for filtering by thickness
                 Picker(selection: $filterThickness, label: HStack {
                     Text("Thickness")
@@ -79,7 +88,7 @@ struct SheetMetalView: View {
                         Text(thickness.rawValue).tag(thickness)
                     }
                 }
-
+                
                 // Add a Picker here for filtering by All, Fullsheets, or Remnants
                 Picker(selection: $filterSheetSize, label: HStack {
                     Text("Sheet Size")
@@ -89,8 +98,6 @@ struct SheetMetalView: View {
                         Text(sheetSize.rawValue).tag(sheetSize)
                     }
                 }
-
-                .padding(.horizontal, 10)
                 List(filteredTableData, id: \.id) { data in
                     Button(action: {
                         selectedTableData = data
