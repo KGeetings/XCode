@@ -25,7 +25,13 @@ struct SheetMetalView: View {
         
         // Filter by sheet size
         if !filterSheetSize.isEmpty && filterSheetSize != "All" {
-            result = result.filter { $0.length == Double(filterSheetSize) || $0.width == Double(filterSheetSize)}
+            if filterSheetSize == "Fullsheet" {
+                //return (length == 120.0 && width == 60.0) || (length == 120.0 && width == 48.0) || (length == 96.0 && width == 60.0) || (length == 96.0 && width == 48.0);
+                result = result.filter { $0.length == 120.0 && $0.width == 60.0 || $0.length == 120.0 && $0.width == 48.0 || $0.length == 96.0 && $0.width == 60.0 || $0.length == 96.0 && $0.width == 48.0}
+            } else if filterSheetSize == "Remnant" {
+                //return !(length == 120.0 && width == 60.0) && !(length == 120.0 && width == 48.0) && !(length == 96.0 && width == 60.0) && !(length == 96.0 && width == 48.0);
+                result = result.filter { $0.length != 120.0 && $0.width != 60.0 && $0.length != 120.0 && $0.width != 48.0 && $0.length != 96.0 && $0.width != 60.0 && $0.length != 96.0 && $0.width != 48.0}
+            }
         }
         
         // Filter by search text
@@ -53,21 +59,37 @@ struct SheetMetalView: View {
                     })
                     .padding(.horizontal, 20)
                 }
-                // TODO
+                
                 // Add a Picker here for filtering by material
-                Picker("Material", selection: $filterMaterial) {
+                Picker(selection: $filterMaterial, label: HStack {
+                    Text("Material")
+                    Spacer()
+                }) {
                     ForEach(Filter.Material.allCases) { material in
                         Text(material.rawValue).tag(material)
                     }
                 }
 
                 // Add a Picker here for filtering by thickness
-                Picker("Thickness", selection: $filterThickness) {
+                Picker(selection: $filterThickness, label: HStack {
+                    Text("Thickness")
+                    Spacer()
+                }) {
                     ForEach(Filter.Thickness.allCases) { thickness in
                         Text(thickness.rawValue).tag(thickness)
                     }
                 }
+
                 // Add a Picker here for filtering by All, Fullsheets, or Remnants
+                Picker(selection: $filterSheetSize, label: HStack {
+                    Text("Sheet Size")
+                    Spacer()
+                }) {
+                    ForEach(Filter.SheetSize.allCases) { sheetSize in
+                        Text(sheetSize.rawValue).tag(sheetSize)
+                    }
+                }
+
                 .padding(.horizontal, 10)
                 List(filteredTableData, id: \.id) { data in
                     Button(action: {
