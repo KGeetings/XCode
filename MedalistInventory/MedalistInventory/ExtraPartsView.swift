@@ -50,24 +50,26 @@ struct ExtraPartsView: View {
                     })
                     .padding(.horizontal, 20)
                 }
-                // Add a Picker here for filtering by material
-                Picker(selection: $filterMaterial, label: HStack {
-                    Text("Material")
+                HStack(alignment: .top) {
                     Spacer()
-                }) {
-                    ForEach(Filter.Material.allCases) { material in
-                        Text(material.rawValue).tag(material)
+                    VStack(alignment: .leading) {
+                        Text("Material")
+                        Picker("Material", selection: $filterMaterial) {
+                            ForEach(Filter.Material.allCases) { material in
+                                Text(material.rawValue).tag(material)
+                            }
+                        }
                     }
-                }
-                
-                // Add a Picker here for filtering by thickness
-                Picker(selection: $filterThickness, label: HStack {
-                    Text("Thickness")
                     Spacer()
-                }) {
-                    ForEach(Filter.Thickness.allCases) { thickness in
-                        Text(thickness.rawValue).tag(thickness)
+                    VStack(alignment: .trailing) {
+                        Text("Thickness")
+                        Picker("Thickness", selection: $filterThickness) {
+                            ForEach(Filter.Thickness.allCases) { thickness in
+                                Text(thickness.rawValue).tag(thickness)
+                            }
+                        }
                     }
+                    Spacer()
                 }
 
                 List(filteredTableData, id: \.id) { data in

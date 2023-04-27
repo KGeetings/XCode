@@ -68,35 +68,35 @@ struct SheetMetalView: View {
                     })
                     .padding(.horizontal, 20)
                 }
-                
-                // Add a Picker here for filtering by material
-                Picker(selection: $filterMaterial, label: HStack {
-                    Text("Material")
+                HStack(alignment: .top) {
                     Spacer()
-                }) {
-                    ForEach(Filter.Material.allCases) { material in
-                        Text(material.rawValue).tag(material)
+                    VStack(alignment: .leading) {
+                        Text("Material")
+                        Picker("Material", selection: $filterMaterial) {
+                            ForEach(Filter.Material.allCases) { material in
+                                Text(material.rawValue).tag(material)
+                            }
+                        }
                     }
-                }
-                
-                // Add a Picker here for filtering by thickness
-                Picker(selection: $filterThickness, label: HStack {
-                    Text("Thickness")
                     Spacer()
-                }) {
-                    ForEach(Filter.Thickness.allCases) { thickness in
-                        Text(thickness.rawValue).tag(thickness)
+                    VStack(alignment: .center) {
+                        Text("Thickness")
+                        Picker("Thickness", selection: $filterThickness) {
+                            ForEach(Filter.Thickness.allCases) { thickness in
+                                Text(thickness.rawValue).tag(thickness)
+                            }
+                        }
                     }
-                }
-                
-                // Add a Picker here for filtering by All, Fullsheets, or Remnants
-                Picker(selection: $filterSheetSize, label: HStack {
-                    Text("Sheet Size")
                     Spacer()
-                }) {
-                    ForEach(Filter.SheetSize.allCases) { sheetSize in
-                        Text(sheetSize.rawValue).tag(sheetSize)
+                    VStack(alignment: .trailing) {
+                        Text("Sheet Size")
+                        Picker("Sheet Size", selection: $filterSheetSize) {
+                            ForEach(Filter.SheetSize.allCases) { sheetSize in
+                                Text(sheetSize.rawValue).tag(sheetSize)
+                            }
+                        }
                     }
+                    Spacer()
                 }
                 List(filteredTableData, id: \.id) { data in
                     Button(action: {
