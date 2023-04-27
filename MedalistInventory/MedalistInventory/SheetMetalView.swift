@@ -12,7 +12,22 @@ struct SheetMetalView: View {
 
     var filteredTableData: [SheetMetalData] {
         if filterSearchText.isEmpty {
-            return tableData.sheetMetalData
+            // Check if filterMaterial is empty or "All"
+            if filterMaterial.isEmpty || filterMaterial == "All" {
+                // Check if filterThickness is empty or "All"
+                if filterThickness.isEmpty || filterThickness == "All" {
+                    // Check if filterSheetSize is empty or "All"
+                    if filterSheetSize.isEmpty || filterSheetSize == "All" {
+                        return tableData.sheetMetalData
+                    } else {
+                        return tableData.sheetMetalData.filter { $0.length == Double(filterSheetSize) || $0.width == Double(filterSheetSize)}
+                    }
+                } else {
+                    return tableData.sheetMetalData.filter { $0.thickness == filterThickness }
+                }
+            } else {
+                return tableData.sheetMetalData.filter { $0.material == filterMaterial }
+            }
         } else {
             return tableData.sheetMetalData.filter { $0.material.localizedCaseInsensitiveContains(filterSearchText) || $0.thickness.localizedCaseInsensitiveContains(filterSearchText)}
         }
