@@ -20,7 +20,7 @@ struct ContentView: View {
                     Label("Sheet Metal", systemImage: "square.stack.3d.up.fill")
                 }
                 .tag(Tab.sheetMetal)
-            ExtraPartsView()
+            ExtraPartsView(tableData: tableData)
                 .tabItem {
                     Label("Extra Parts", systemImage: "cube.fill")
                 }

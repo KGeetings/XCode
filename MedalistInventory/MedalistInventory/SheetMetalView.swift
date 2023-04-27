@@ -2,9 +2,9 @@ import SwiftUI
 
 struct SheetMetalView: View {
     @State var filterSearchText: String = ""
-    @State var filterMaterial: String = ""
-    @State var filterThickness: String = ""
-    @State var filterSheetSize: String = ""
+    @State var filterMaterial: Filter.Material.RawValue = "All"
+    @State var filterThickness: Filter.Thickness.RawValue = "All"
+    @State var filterSheetSize: Filter.SheetSize.RawValue = "All"
     @State var showAddRowModal: Bool = false
     @State var selectedTableData: SheetMetalData?
     @ObservedObject var tableData: TableData = TableData()

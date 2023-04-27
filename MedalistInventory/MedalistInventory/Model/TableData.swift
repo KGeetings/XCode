@@ -16,8 +16,8 @@ struct ExtraPartsData: Codable, Identifiable {
     let material: String
     let thickness: String
     let partname: String
-    let quantity: Int
-    let maxquantity: Int
+    let quantityexists: Int
+    let quantitymax: Int
 }
 
 let numberFormatter: NumberFormatter = {
@@ -32,8 +32,9 @@ class TableData: ObservableObject {
     @Published var extraPartsData: [ExtraPartsData] = []
     
     func load() {
+        loadExtraParts()
         guard let url = URL(string: "http://10.0.2.3/table-data.php?table=sheet_metal") else {
-            print("Invalid URL")
+            print("Invalid URL for SheetMetalData")
             fallbackToLocalJSONFile()
             return
         }
@@ -42,7 +43,7 @@ class TableData: ObservableObject {
         
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             if let error = error {
-                print("Failed to load table data from server: \(error.localizedDescription)")
+                print("Failed to load SheetMetalData from server: \(error.localizedDescription)")
                 self.fallbackToLocalJSONFile()
                 return
             }
@@ -67,7 +68,7 @@ class TableData: ObservableObject {
                         self.sheetMetalData = decodedData
                     }
                 } catch {
-                    print("Error decoding JSON: \(error.localizedDescription)")
+                    print("Error decoding JSON for SheetMetalData: \(error.localizedDescription)")
                     self.fallbackToLocalJSONFile()
                 }
             } else {
@@ -75,12 +76,11 @@ class TableData: ObservableObject {
             }
         }
         task.resume()
-        loadExtraParts()
     }
 
     func loadExtraParts() {
         guard let url = URL(string: "http://10.0.2.3/table-data.php?table=extra_parts") else {
-            print("Invalid URL")
+            print("Invalid URL for ExtraPartsData")
             fallbackToLocalJSONFile()
             return
         }
@@ -89,7 +89,7 @@ class TableData: ObservableObject {
 
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             if let error = error {
-                print("Failed to load table data from server: \(error.localizedDescription)")
+                print("Failed to load ExtraPartsData from server: \(error.localizedDescription)")
                 self.fallbackToLocalJSONFile()
                 return
             }
@@ -114,7 +114,7 @@ class TableData: ObservableObject {
                         self.extraPartsData = decodedData
                     }
                 } catch {
-                    print("Error decoding JSON: \(error.localizedDescription)")
+                    print("Error decoding JSON for ExtraPartsData: \(error.localizedDescription)")
                     self.fallbackToLocalJSONFile()
                 }
             } else {
@@ -125,6 +125,7 @@ class TableData: ObservableObject {
     }
 
     func fallbackToLocalJSONFile() {
+        print("We are now loading from the Local JSON file(s)")
         // Load Sheet Metal Data from local JSON file
         if let url = Bundle.main.url(forResource: "table-data", withExtension: "json") {
             do {
@@ -135,10 +136,10 @@ class TableData: ObservableObject {
                     self.sheetMetalData = sheetMetalData
                 }
             } catch {
-                print("Failed to load table data from local JSON file: \(error.localizedDescription)")
+                print("Failed to load SheetMetalData from local JSON file: \(error.localizedDescription)")
             }
         } else {
-            print("Failed to locate local JSON file.")
+            print("Failed to locate local SheetMetalData JSON file.")
         }
 
         // Load Extra Parts Data from local JSON file
@@ -151,10 +152,10 @@ class TableData: ObservableObject {
                     self.extraPartsData = extraPartsData
                 }
             } catch {
-                print("Failed to load table data from local JSON file: \(error.localizedDescription)")
+                print("Failed to load ExtraPartsData from local JSON file: \(error.localizedDescription)")
             }
         } else {
-            print("Failed to locate local JSON file.")
+            print("Failed to locate local ExtraPartsData JSON file.")
         }
     }
 }
