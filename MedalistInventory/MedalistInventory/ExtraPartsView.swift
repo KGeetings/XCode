@@ -4,6 +4,7 @@ struct ExtraPartsView: View {
     @State var filterSearchText: String = ""
     @State var filterMaterial: Filter.Material.RawValue = "All"
     @State var filterThickness: Filter.Thickness.RawValue = "All"
+    @State var filterCompany: Filter.Company.RawValue = "All"
     @State var showAddRowModal: Bool = false
     @State var selectedTableData: ExtraPartsData?
     @ObservedObject var tableData: TableData = TableData()
@@ -19,6 +20,11 @@ struct ExtraPartsView: View {
         // Filter by thickness
         if !filterThickness.isEmpty && filterThickness != "All" {
             result = result.filter { $0.thickness == filterThickness }
+        }
+
+        // Filter by Company
+        if !filterCompany.isEmpty && filterCompany != "All" {
+            result = result.filter { $0.company == filterCompany }
         }
         
         // Filter by search text
@@ -61,11 +67,20 @@ struct ExtraPartsView: View {
                         }
                     }
                     Spacer()
-                    VStack(alignment: .trailing) {
+                    VStack(alignment: .center) {
                         Text("Thickness")
                         Picker("Thickness", selection: $filterThickness) {
                             ForEach(Filter.Thickness.allCases) { thickness in
                                 Text(thickness.rawValue).tag(thickness)
+                            }
+                        }
+                    }
+                    Spacer()
+                    VStack(alignment: .trailing) {
+                        Text("Company")
+                        Picker("Company", selection: $filterCompany) {
+                            ForEach(Filter.Company.allCases) { company in
+                                Text(company.rawValue).tag(company)
                             }
                         }
                     }

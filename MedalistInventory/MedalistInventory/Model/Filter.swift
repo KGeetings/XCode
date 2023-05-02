@@ -57,4 +57,20 @@ struct Filter {
 
         var id: String { rawValue }
     }
+
+    enum Company: String, CaseIterable, Identifiable {
+        case all = "All"
+        case johnDeere = "John Deere"
+        case jonnysFabShop = "Jonny's Fab Shop"
+        case kramerMetalFab = "Kramer Metal Fab"
+        case medalist = "Medalist"
+        case mobilityWorldwide = "Mobility Worldwide"
+        case northstar = "Northstar"
+        case pellaCorp = "Pella Corp"
+        case ringOMatic = "Ring-O-Matic"
+        case sealForce = "Seal Force"
+        case weiler = "Weiler"
+        case misc = "Misc."
+        var id: String { rawValue }
+    }
 }

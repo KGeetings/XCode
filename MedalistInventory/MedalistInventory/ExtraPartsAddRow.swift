@@ -4,15 +4,23 @@ struct ExtraPartsAddRow: View {
     @ObservedObject var tableData: TableData = TableData()
     @Binding var isPresented: Bool
     @State var id: Int = 0
+    @State var company: String = "All"
     @State var material: String = "All"
     @State var thickness: String = "All"
-    @State var length: Double = 0
-    @State var width: Double = 0
-    @State var quantity: Int = 0
+    @State var partname: String = ""
+    @State var quantityexists: Int = 0
+    @State var quantitymax: Int = 0
 
     var body: some View {
         NavigationView {
             Form {
+                Section(header: Text("Company")) {
+                    Picker("Company", selection: $company) {
+                        ForEach(Filter.Company.allCases) { company in
+                            Text(company.rawValue).tag(company)
+                        }
+                    }
+                }
                 Section(header: Text("Material")) {
                     Picker("Material", selection: $material) {
                         ForEach(Filter.Material.allCases) { material in
@@ -27,31 +35,27 @@ struct ExtraPartsAddRow: View {
                         }
                     }
                 }
-                Section(header: Text("Length")) {
-                    TextField("Length", value: $length, formatter: numberFormatter)
+                Section(header: Text("Part Name")) {
+                    TextField("Part Name", text: $partname)
                 }
-                Section(header: Text("Width")) {
-                    TextField("Width", value: $width, formatter: numberFormatter)
+                Section(header: Text("Quantity Exists")) {
+                    TextField("Quantity Exists", value: $quantityexists, formatter: NumberFormatter())
+                        .keyboardType(.numberPad)
                 }
-                Section(header: Text("Quantity")) {
-                    TextField("Quantity", value: $quantity, formatter: NumberFormatter())
+                Section(header: Text("Quantity Max")) {
+                    TextField("Quantity Max", value: $quantitymax, formatter: NumberFormatter())
+                        .keyboardType(.numberPad)
                 }
                 Button(action: {
-                    // Check if Length, Width, Quantity are all positive numbers
-                    guard length > 0 && width > 0 && quantity > 0 else {
-                        print("Length, Width, Quantity must all be positive numbers")
+                    // Check if QuantityExists and QuantityMax are positive numbers
+                    guard quantityexists >= 0 && quantitymax >= 0 else {
+                        print("Quantity Exists and Quantity Max must be positive numbers")
                         return
                     }
 
-                    // Check if Material and Thickness are not empty
-                    guard !material.isEmpty && !thickness.isEmpty else {
-                        print("Material and Thickness must not be empty")
-                        return
-                    }
-
-                    // Check if length is greater or equal to width
-                    guard length >= width else {
-                        print("Length must be greater than or equal to Width")
+                    // Check if partname is empty
+                    guard !partname.isEmpty else {
+                        print("Part Name must not be empty")
                         return
                     }
 
@@ -59,7 +63,7 @@ struct ExtraPartsAddRow: View {
                     let url = URL(string: "http://10.0.2.3/database_query_mobileapps.php")!
                     var request = URLRequest(url: url)
                     request.httpMethod = "POST"
-                    let postString = "task=insert&schema=sheet_metal_inventory&material=\(material)&thickness=\(thickness)&length=\(length)&width=\(width)&quantity=\(quantity)"
+                    let postString = "task=insert&schema=extra_parts_inventory&company=\(company)&material=\(material)&thickness=\(thickness)&partname=\(partname)&quantityexists=\(quantityexists)&quantitymax=\(quantitymax)"
                     request.httpBody = postString.data(using: .utf8)
                     let task = URLSession.shared.dataTask(with: request) { data, response, error in
                         guard let data = data, error == nil else {
@@ -81,7 +85,7 @@ struct ExtraPartsAddRow: View {
                     Text("Add Row")
                 })
             }
-            .navigationBarTitle("Add Row")
+            .navigationBarTitle("Add Extra Part")
         }
     }
 }

@@ -8,11 +8,10 @@ struct ExtraPartsEditRow: View {
     var body: some View {
         NavigationView {
             Form {
-                // TODO
                 Section(header: Text("Company: \(selectedTableData?.company ?? "")")) {
                     Picker("Company", selection: $tableDataToEdit.company) {
-                        ForEach(Filter.Material.allCases) { material in
-                            Text(material.rawValue).tag(material)
+                        ForEach(Filter.Company.allCases) { company in
+                            Text(company.rawValue).tag(company)
                         }
                     }
                 }
@@ -34,7 +33,7 @@ struct ExtraPartsEditRow: View {
                 }
                 
                 Section(header: Text("Part Name: \(selectedTableData?.partname ?? "")")) {
-                    TextField("Part Name", value: $tableDataToEdit.partname, formatter: Formatter())
+                    TextField("Part Name", text: $tableDataToEdit.partname)
                 }
 
                 Section(header: Text("Quantity Exists: \(selectedTableData?.quantityexists ?? 0)")) {
@@ -47,15 +46,20 @@ struct ExtraPartsEditRow: View {
                         .keyboardType(.numberPad)
                 }
 
-                /*Button(action: {
-                    guard tableDataToEdit.quantityexists >= 0 else {
+                Button(action: {
+                    guard tableDataToEdit.quantityexists >= 0 || tableDataToEdit.quantitymax >= 0 else {
+                        return
+                    }
+
+                    // Check if partname is empty
+                    guard !tableDataToEdit.partname.isEmpty else {
                         return
                     }
 
                     let url = URL(string: "http://10.0.2.3/database_query_mobileapps.php")!
                     var request = URLRequest(url: url)
                     request.httpMethod = "POST"
-                    let postString = "task=update&schema=sheet_metal_inventory&id=\(tableDataToEdit.id)&material=\(tableDataToEdit.material)&thickness=\(tableDataToEdit.thickness)&length=\(tableDataToEdit.length)&width=\(tableDataToEdit.width)&quantity=\(tableDataToEdit.quantity)&allocated=\(tableDataToEdit.allocated)"
+                    let postString = "task=update&schema=extra_parts_inventory&id=\(tableDataToEdit.id)&company=\(tableDataToEdit.company)&material=\(tableDataToEdit.material)&thickness=\(tableDataToEdit.thickness)&partname=\(tableDataToEdit.partname)&quantityexists=\(tableDataToEdit.quantityexists)&quantitymax=\(tableDataToEdit.quantitymax)"
                     request.httpBody = postString.data(using: .utf8)
                     let task = URLSession.shared.dataTask(with: request) { data, response, error in
                         guard let data = data, error == nil else {
@@ -75,7 +79,7 @@ struct ExtraPartsEditRow: View {
                     self.presentationMode.wrappedValue.dismiss()
                 }, label: {
                     Text("Save Changes")
-                }) */
+                })
             }
             .navigationBarTitle("Edit Row")
         }
