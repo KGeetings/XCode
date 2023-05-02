@@ -109,7 +109,7 @@ struct ExtraPartsView: View {
             .navigationBarTitle("Extra Parts Inv.")
             .sheet(isPresented: $showAddRowModal, content: {
                 // Present Add Row Modal
-                //ExtraPartsAddRow(isPresented: $showAddRowModal)
+                ExtraPartsAddRow(isPresented: $showAddRowModal)
             })
             .sheet(item: $selectedTableData) { data in
                 // Present Edit Row Modal
