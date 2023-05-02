@@ -126,6 +126,18 @@ struct SheetMetalView: View {
                 // Present Edit Row Modal
                 SheetMetalEditRow(selectedTableData: $selectedTableData, tableDataToEdit: data)
             }
+            .swipeActions {
+                // Add delete action
+                Button(action: {
+                    // Remove row from filteredTableData array
+                    if let index = filteredTableData.firstIndex(of: data) {
+                        filteredTableData.remove(at: index)
+                    }
+                }) {
+                    Label("Delete", systemImage: "trash")
+                }
+                .tint(.red)
+            }
         }
         .onAppear { tableData.load() }
     }
