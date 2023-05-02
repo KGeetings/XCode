@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4861F6D62A01C207008A9EC4 /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4861F6D52A01C207008A9EC4 /* Filter.swift */; };
 		48649FB929B5A1E000F6C29A /* MedalistInventoryApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48649FB829B5A1E000F6C29A /* MedalistInventoryApp.swift */; };
 		48649FBB29B5A1E000F6C29A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48649FBA29B5A1E000F6C29A /* ContentView.swift */; };
 		48649FBD29B5A1E500F6C29A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 48649FBC29B5A1E500F6C29A /* Assets.xcassets */; };
@@ -14,14 +15,16 @@
 		48649FC729B5A20F00F6C29A /* SheetMetalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48649FC629B5A20E00F6C29A /* SheetMetalView.swift */; };
 		4868837829D366A0003C2FFD /* ExtraPartsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4868837729D366A0003C2FFD /* ExtraPartsView.swift */; };
 		486B7A4229F9EC9500B51CAB /* table-data-extra-parts.json in Resources */ = {isa = PBXBuildFile; fileRef = 486B7A4129F9EC9500B51CAB /* table-data-extra-parts.json */; };
+		48846E6E2A01C3D9004D52AA /* ExtraPartsAddRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48846E6D2A01C3D9004D52AA /* ExtraPartsAddRow.swift */; };
+		48846E702A01C3EA004D52AA /* ExtraPartsEditRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48846E6F2A01C3EA004D52AA /* ExtraPartsEditRow.swift */; };
 		48E5844F29E6FDEE00D9143A /* table-data.json in Resources */ = {isa = PBXBuildFile; fileRef = 48E5844E29E6FDED00D9143A /* table-data.json */; };
-		48ED613529E7AA0700C14F35 /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48ED613429E7AA0700C14F35 /* Filter.swift */; };
 		48ED613829F03FED00C14F35 /* TableData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48ED613729F03FEB00C14F35 /* TableData.swift */; };
 		48ED613E29F6EA5000C14F35 /* SheetMetalAddRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48ED613D29F6EA4F00C14F35 /* SheetMetalAddRow.swift */; };
 		48ED614029F7576000C14F35 /* SheetMetalEditRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48ED613F29F7575D00C14F35 /* SheetMetalEditRow.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4861F6D52A01C207008A9EC4 /* Filter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Filter.swift; sourceTree = "<group>"; };
 		48649FB529B5A1E000F6C29A /* Medalist.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Medalist.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		48649FB829B5A1E000F6C29A /* MedalistInventoryApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedalistInventoryApp.swift; sourceTree = "<group>"; };
 		48649FBA29B5A1E000F6C29A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -30,8 +33,9 @@
 		48649FC629B5A20E00F6C29A /* SheetMetalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetMetalView.swift; sourceTree = "<group>"; };
 		4868837729D366A0003C2FFD /* ExtraPartsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtraPartsView.swift; sourceTree = "<group>"; };
 		486B7A4129F9EC9500B51CAB /* table-data-extra-parts.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "table-data-extra-parts.json"; sourceTree = "<group>"; };
+		48846E6D2A01C3D9004D52AA /* ExtraPartsAddRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtraPartsAddRow.swift; sourceTree = "<group>"; };
+		48846E6F2A01C3EA004D52AA /* ExtraPartsEditRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtraPartsEditRow.swift; sourceTree = "<group>"; };
 		48E5844E29E6FDED00D9143A /* table-data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "table-data.json"; sourceTree = "<group>"; };
-		48ED613429E7AA0700C14F35 /* Filter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Filter.swift; sourceTree = "<group>"; };
 		48ED613729F03FEB00C14F35 /* TableData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableData.swift; sourceTree = "<group>"; };
 		48ED613D29F6EA4F00C14F35 /* SheetMetalAddRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetMetalAddRow.swift; sourceTree = "<group>"; };
 		48ED613F29F7575D00C14F35 /* SheetMetalEditRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetMetalEditRow.swift; sourceTree = "<group>"; };
@@ -75,6 +79,8 @@
 				48649FBA29B5A1E000F6C29A /* ContentView.swift */,
 				48649FC629B5A20E00F6C29A /* SheetMetalView.swift */,
 				48ED613F29F7575D00C14F35 /* SheetMetalEditRow.swift */,
+				48846E6D2A01C3D9004D52AA /* ExtraPartsAddRow.swift */,
+				48846E6F2A01C3EA004D52AA /* ExtraPartsEditRow.swift */,
 				48ED613D29F6EA4F00C14F35 /* SheetMetalAddRow.swift */,
 				4868837729D366A0003C2FFD /* ExtraPartsView.swift */,
 			);
@@ -101,7 +107,7 @@
 		48ED613629F03F5B00C14F35 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				48ED613429E7AA0700C14F35 /* Filter.swift */,
+				4861F6D52A01C207008A9EC4 /* Filter.swift */,
 				48ED613729F03FEB00C14F35 /* TableData.swift */,
 			);
 			path = Model;
@@ -179,12 +185,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				48846E702A01C3EA004D52AA /* ExtraPartsEditRow.swift in Sources */,
 				48ED613829F03FED00C14F35 /* TableData.swift in Sources */,
 				48649FBB29B5A1E000F6C29A /* ContentView.swift in Sources */,
-				48ED613529E7AA0700C14F35 /* Filter.swift in Sources */,
 				4868837829D366A0003C2FFD /* ExtraPartsView.swift in Sources */,
 				48649FC729B5A20F00F6C29A /* SheetMetalView.swift in Sources */,
 				48649FB929B5A1E000F6C29A /* MedalistInventoryApp.swift in Sources */,
+				4861F6D62A01C207008A9EC4 /* Filter.swift in Sources */,
+				48846E6E2A01C3D9004D52AA /* ExtraPartsAddRow.swift in Sources */,
 				48ED613E29F6EA5000C14F35 /* SheetMetalAddRow.swift in Sources */,
 				48ED614029F7576000C14F35 /* SheetMetalEditRow.swift in Sources */,
 			);

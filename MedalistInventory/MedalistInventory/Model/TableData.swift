@@ -11,13 +11,13 @@ struct SheetMetalData: Codable, Identifiable {
 }
 
 struct ExtraPartsData: Codable, Identifiable {
-    let id: Int
-    let company: String
-    let material: String
-    let thickness: String
-    let partname: String
-    let quantityexists: Int
-    let quantitymax: Int
+    var id: Int
+    var company: String
+    var material: String
+    var thickness: String
+    var partname: String
+    var quantityexists: Int
+    var quantitymax: Int
 }
 
 let numberFormatter: NumberFormatter = {
