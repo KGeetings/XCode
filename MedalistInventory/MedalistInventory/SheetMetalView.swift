@@ -119,8 +119,6 @@ struct SheetMetalView: View {
                         // Add delete action
                         Button(action: {
                             // Remove row from table data, using id
-                            //tableData.sheetMetalData.removeAll(where: { $0.id == data.id })
-
                             let url = URL(string: "http://10.0.2.3/database_query_mobileapps.php")!
                             var request = URLRequest(url: url)
                             request.httpMethod = "POST"
