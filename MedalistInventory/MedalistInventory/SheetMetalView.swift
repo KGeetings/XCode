@@ -118,10 +118,28 @@ struct SheetMetalView: View {
                     .swipeActions {
                         // Add delete action
                         Button(action: {
-                            // Remove row from filteredTableData array
-                            if let index = $selectedTableData {
-                                //TODO
+                            // Remove row from table data, using id
+                            //tableData.sheetMetalData.removeAll(where: { $0.id == data.id })
+
+                            let url = URL(string: "http://10.0.2.3/database_query_mobileapps.php")!
+                            var request = URLRequest(url: url)
+                            request.httpMethod = "POST"
+                            let postString = "task=delete&schema=sheet_metal_inventory&id=\(data.id)"
+                            request.httpBody = postString.data(using: .utf8)
+                            let task = URLSession.shared.dataTask(with: request) { data, response, error in
+                                guard let data = data, error == nil else {
+                                    print(error?.localizedDescription ?? "No data")
+                                    return
+                                }
+                                let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
+                                if let responseJSON = responseJSON as? [String: Any] {
+                                    print(responseJSON)
+                                }
                             }
+                            task.resume()
+                            
+                            // Reload the tableData
+                            tableData.load()
                         }) {
                             Label("Delete", systemImage: "trash")
                         }
