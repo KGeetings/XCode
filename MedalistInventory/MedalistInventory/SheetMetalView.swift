@@ -101,7 +101,7 @@ struct SheetMetalView: View {
                 List(filteredTableData, id: \.id) { data in
                     Button(action: {
                         selectedTableData = data
-                    }, label: {
+                    }) {
                         HStack(alignment: .top){
                             // With number formatter
                             VStack(alignment: .leading) {
@@ -114,7 +114,19 @@ struct SheetMetalView: View {
                                 Text("\(numberFormatter.string(from: NSNumber(value: data.length))!) x \(numberFormatter.string(from: NSNumber(value: data.width))!)")
                             }
                         }
-                    })
+                    }
+                    .swipeActions {
+                        // Add delete action
+                        Button(action: {
+                            // Remove row from filteredTableData array
+                            if let index = $selectedTableData {
+                                //TODO
+                            }
+                        }) {
+                            Label("Delete", systemImage: "trash")
+                        }
+                        .tint(.red)
+                    }
                 }
             }
             .navigationBarTitle("Sheet Metal Inv.")
@@ -125,18 +137,6 @@ struct SheetMetalView: View {
             .sheet(item: $selectedTableData) { data in
                 // Present Edit Row Modal
                 SheetMetalEditRow(selectedTableData: $selectedTableData, tableDataToEdit: data)
-            }
-            .swipeActions {
-                // Add delete action
-                Button(action: {
-                    // Remove row from filteredTableData array
-                    if let index = filteredTableData.firstIndex(of: data) {
-                        filteredTableData.remove(at: index)
-                    }
-                }) {
-                    Label("Delete", systemImage: "trash")
-                }
-                .tint(.red)
             }
         }
         .onAppear { tableData.load() }
