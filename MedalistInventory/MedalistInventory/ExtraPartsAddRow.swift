@@ -79,6 +79,7 @@ struct ExtraPartsAddRow: View {
 
                     // Reload the tableData
                     tableData.load()
+                    tableData.loadExtraParts()
                     
                     isPresented = false
                 }, label: {

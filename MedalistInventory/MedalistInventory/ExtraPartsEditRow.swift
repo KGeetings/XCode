@@ -75,6 +75,7 @@ struct ExtraPartsEditRow: View {
                     
                     // Reload the tableData
                     tableData.load()
+                    tableData.loadExtraParts()
                     
                     self.presentationMode.wrappedValue.dismiss()
                 }, label: {
