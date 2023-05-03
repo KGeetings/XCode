@@ -7,7 +7,7 @@ struct ExtraPartsView: View {
     @State var filterCompany: Filter.Company.RawValue = "All"
     @State var showAddRowModal: Bool = false
     @State var selectedTableData: ExtraPartsData?
-    @ObservedObject var tableData: TableData = TableData()
+    @ObservedObject var tableData: TableData
     
     var filteredTableData: [ExtraPartsData] {
         var result = tableData.extraPartsData
@@ -137,11 +137,11 @@ struct ExtraPartsView: View {
             .navigationBarTitle("Extra Parts Inv.")
             .sheet(isPresented: $showAddRowModal, content: {
                 // Present Add Row Modal
-                ExtraPartsAddRow(isPresented: $showAddRowModal)
+                ExtraPartsAddRow(tableData: tableData, isPresented: $showAddRowModal)
             })
             .sheet(item: $selectedTableData) { data in
                 // Present Edit Row Modal
-                ExtraPartsEditRow(selectedTableData: $selectedTableData, tableDataToEdit: data)
+                ExtraPartsEditRow(tableData: tableData, selectedTableData: $selectedTableData, tableDataToEdit: data)
             }
         }
         .onAppear { tableData.load() }
@@ -150,6 +150,6 @@ struct ExtraPartsView: View {
 
 struct ExtraPartsView_Previews: PreviewProvider {
     static var previews: some View {
-        ExtraPartsView()
+        ExtraPartsView(tableData: TableData())
     }
 }

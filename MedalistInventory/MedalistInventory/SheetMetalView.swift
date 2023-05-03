@@ -7,7 +7,7 @@ struct SheetMetalView: View {
     @State var filterSheetSize: Filter.SheetSize.RawValue = "All"
     @State var showAddRowModal: Bool = false
     @State var selectedTableData: SheetMetalData?
-    @ObservedObject var tableData: TableData = TableData()
+    @ObservedObject var tableData: TableData
     
     var filteredTableData: [SheetMetalData] {
         var result = tableData.sheetMetalData
@@ -148,11 +148,11 @@ struct SheetMetalView: View {
             .navigationBarTitle("Sheet Metal Inv.")
             .sheet(isPresented: $showAddRowModal, content: {
                 // Present Add Row Modal
-                SheetMetalAddRow(isPresented: $showAddRowModal)
+                SheetMetalAddRow(tableData: tableData, isPresented: $showAddRowModal)
             })
             .sheet(item: $selectedTableData) { data in
                 // Present Edit Row Modal
-                SheetMetalEditRow(selectedTableData: $selectedTableData, tableDataToEdit: data)
+                SheetMetalEditRow(tableData: tableData, selectedTableData: $selectedTableData, tableDataToEdit: data)
             }
         }
         .onAppear { tableData.load() }

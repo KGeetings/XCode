@@ -2,16 +2,16 @@ import SwiftUI
 
 struct ContentView: View {
     @State private var selection: Tab = .sheetMetal
-    @ObservedObject var tableData: TableData = TableData()
+    @ObservedObject var tableData: TableData
     
     enum Tab {
         case sheetMetal
         case extraParts
     }
     
-    init() {
-        UITabBar.appearance().backgroundColor = UIColor(.gray)
-    }
+//    init() {
+//        UITabBar.appearance().backgroundColor = UIColor(.gray)
+//    }
     
     var body: some View {
         TabView(selection: $selection) {
@@ -32,6 +32,6 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ContentView(tableData: TableData())
     }
 }

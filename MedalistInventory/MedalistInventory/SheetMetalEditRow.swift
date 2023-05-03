@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct SheetMetalEditRow: View {
-    @ObservedObject var tableData: TableData = TableData()
+    @ObservedObject var tableData: TableData
     @Binding var selectedTableData: SheetMetalData?
     @State var tableDataToEdit: SheetMetalData
     @Environment(\.presentationMode) var presentationMode
@@ -91,6 +91,6 @@ struct SheetMetalEditRow: View {
 struct SheetMetalEditRow_Previews: PreviewProvider {
     static var previews: some View {
         let selectedTableData = SheetMetalData(id: 1, material: "Aluminum Expanded Metal", thickness: "0.02 (SHIM)", length: 120.0, width: 60.0, quantity: 10, allocated: 10)
-        SheetMetalEditRow(selectedTableData: .constant(selectedTableData), tableDataToEdit: selectedTableData)
+        SheetMetalEditRow(tableData: TableData(), selectedTableData: .constant(selectedTableData), tableDataToEdit: selectedTableData)
     }
 }
