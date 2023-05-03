@@ -35,11 +35,11 @@
 		486B7A4129F9EC9500B51CAB /* table-data-extra-parts.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "table-data-extra-parts.json"; sourceTree = "<group>"; };
 		48846E6D2A01C3D9004D52AA /* ExtraPartsAddRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtraPartsAddRow.swift; sourceTree = "<group>"; };
 		48846E6F2A01C3EA004D52AA /* ExtraPartsEditRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtraPartsEditRow.swift; sourceTree = "<group>"; };
-		48846E722A02C6CF004D52AA /* Medalist-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Medalist-Info.plist"; sourceTree = "<group>"; };
 		48E5844E29E6FDED00D9143A /* table-data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "table-data.json"; sourceTree = "<group>"; };
 		48ED613729F03FEB00C14F35 /* TableData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableData.swift; sourceTree = "<group>"; };
 		48ED613D29F6EA4F00C14F35 /* SheetMetalAddRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetMetalAddRow.swift; sourceTree = "<group>"; };
 		48ED613F29F7575D00C14F35 /* SheetMetalEditRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetMetalEditRow.swift; sourceTree = "<group>"; };
+		48EE746E2A0320EA000D5235 /* Medalist-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Medalist-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,7 +56,7 @@
 		48649FAC29B5A1E000F6C29A = {
 			isa = PBXGroup;
 			children = (
-				48846E722A02C6CF004D52AA /* Medalist-Info.plist */,
+				48EE746E2A0320EA000D5235 /* Medalist-Info.plist */,
 				48649FB729B5A1E000F6C29A /* MedalistInventory */,
 				48649FB629B5A1E000F6C29A /* Products */,
 			);
