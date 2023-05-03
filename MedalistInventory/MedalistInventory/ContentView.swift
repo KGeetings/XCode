@@ -9,10 +9,6 @@ struct ContentView: View {
         case extraParts
     }
     
-//    init() {
-//        UITabBar.appearance().backgroundColor = UIColor(.gray)
-//    }
-    
     var body: some View {
         TabView(selection: $selection) {
             SheetMetalView(tableData: tableData)

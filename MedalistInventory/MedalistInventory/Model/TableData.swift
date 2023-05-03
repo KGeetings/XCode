@@ -33,6 +33,7 @@ class TableData: ObservableObject {
     
     func load() {
         loadExtraParts()
+        print("We are now loading load()")
         guard let url = URL(string: "http://10.0.2.3/table-data.php?table=sheet_metal") else {
             print("Invalid URL for SheetMetalData")
             fallbackToLocalJSONFile()
@@ -79,6 +80,7 @@ class TableData: ObservableObject {
     }
 
     func loadExtraParts() {
+        print("We are now loading loadExtraParts()")
         guard let url = URL(string: "http://10.0.2.3/table-data.php?table=extra_parts") else {
             print("Invalid URL for ExtraPartsData")
             fallbackToLocalJSONFile()
