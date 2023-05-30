@@ -7,7 +7,7 @@ struct ExtraPartsView: View {
     @State var filterCompany: Filter.Company.RawValue = "All"
     @State var showAddRowModal: Bool = false
     @State var selectedTableData: ExtraPartsData?
-    @ObservedObject var tableData: TableData = TableData()
+    @ObservedObject var tableData: TableData
     
     var filteredTableData: [ExtraPartsData] {
         var result = tableData.extraPartsData
@@ -90,7 +90,7 @@ struct ExtraPartsView: View {
                 List(filteredTableData, id: \.id) { data in
                     Button(action: {
                         selectedTableData = data
-                    }, label: {
+                    }) {
                         HStack(alignment: .top){
                             // With number formatter
                             VStack(alignment: .leading) {
@@ -103,17 +103,45 @@ struct ExtraPartsView: View {
                                 Text("\(data.material) x \(data.thickness)")
                             }
                         }
-                    })
+                    }
+                    .swipeActions {
+                        // Add delete action
+                        Button(action: {
+                            // Remove row from table data, using id
+                            let url = URL(string: "http://10.0.2.3/database_query_mobileapps.php")!
+                            var request = URLRequest(url: url)
+                            request.httpMethod = "POST"
+                            let postString = "task=delete&schema=extra_parts_inventory&id=\(data.id)"
+                            request.httpBody = postString.data(using: .utf8)
+                            let task = URLSession.shared.dataTask(with: request) { data, response, error in
+                                guard let data = data, error == nil else {
+                                    print(error?.localizedDescription ?? "No data")
+                                    return
+                                }
+                                let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
+                                if let responseJSON = responseJSON as? [String: Any] {
+                                    print(responseJSON)
+                                }
+                            }
+                            task.resume()
+                            
+                            // Reload the tableData
+                            tableData.load()
+                        }) {
+                            Label("Delete", systemImage: "trash")
+                        }
+                        .tint(.red)
+                    }
                 }
             }
             .navigationBarTitle("Extra Parts Inv.")
             .sheet(isPresented: $showAddRowModal, content: {
                 // Present Add Row Modal
-                ExtraPartsAddRow(isPresented: $showAddRowModal)
+                ExtraPartsAddRow(tableData: tableData, isPresented: $showAddRowModal)
             })
             .sheet(item: $selectedTableData) { data in
                 // Present Edit Row Modal
-                ExtraPartsEditRow(selectedTableData: $selectedTableData, tableDataToEdit: data)
+                ExtraPartsEditRow(tableData: tableData, selectedTableData: $selectedTableData, tableDataToEdit: data)
             }
         }
         .onAppear { tableData.load() }
@@ -122,6 +150,6 @@ struct ExtraPartsView: View {
 
 struct ExtraPartsView_Previews: PreviewProvider {
     static var previews: some View {
-        ExtraPartsView()
+        ExtraPartsView(tableData: TableData())
     }
 }

@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct ExtraPartsAddRow: View {
-    @ObservedObject var tableData: TableData = TableData()
+    @ObservedObject var tableData: TableData 
     @Binding var isPresented: Bool
     @State var id: Int = 0
     @State var company: String = "All"
@@ -79,6 +79,7 @@ struct ExtraPartsAddRow: View {
 
                     // Reload the tableData
                     tableData.load()
+                    tableData.loadExtraParts()
                     
                     isPresented = false
                 }, label: {
@@ -92,6 +93,6 @@ struct ExtraPartsAddRow: View {
 
 struct ExtraPartsAddRow_Previews: PreviewProvider {
     static var previews: some View {
-        SheetMetalAddRow(isPresented: .constant(true))
+        ExtraPartsAddRow(tableData: TableData(), isPresented: .constant(true))
     }
 }

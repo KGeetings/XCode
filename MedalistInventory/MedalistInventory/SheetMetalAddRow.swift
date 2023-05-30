@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct SheetMetalAddRow: View {
-    @ObservedObject var tableData: TableData = TableData()
+    @ObservedObject var tableData: TableData
     @Binding var isPresented: Bool
     @State var id: Int = 0
     @State var material: String = "All"
@@ -88,6 +88,6 @@ struct SheetMetalAddRow: View {
 
 struct SheetMetalAddRow_Previews: PreviewProvider {
     static var previews: some View {
-        SheetMetalAddRow(isPresented: .constant(true))
+        SheetMetalAddRow(tableData: TableData(), isPresented: .constant(true))
     }
 }

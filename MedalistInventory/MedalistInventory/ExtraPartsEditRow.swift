@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct ExtraPartsEditRow: View {
-    @ObservedObject var tableData: TableData = TableData()
+    @ObservedObject var tableData: TableData
     @Binding var selectedTableData: ExtraPartsData?
     @State var tableDataToEdit: ExtraPartsData
     @Environment(\.presentationMode) var presentationMode
@@ -75,6 +75,7 @@ struct ExtraPartsEditRow: View {
                     
                     // Reload the tableData
                     tableData.load()
+                    tableData.loadExtraParts()
                     
                     self.presentationMode.wrappedValue.dismiss()
                 }, label: {
@@ -89,6 +90,6 @@ struct ExtraPartsEditRow: View {
 struct ExtraPartsEditRow_Previews: PreviewProvider {
     static var previews: some View {
         let selectedTableData = ExtraPartsData(id: 1, company: "John Deere", material: "Aluminum Expanded Metal", thickness: "0.02 (SHIM)", partname: "TEST", quantityexists: 5, quantitymax: 10)
-        ExtraPartsEditRow(selectedTableData: .constant(selectedTableData), tableDataToEdit: selectedTableData)
+        ExtraPartsEditRow(tableData: TableData(), selectedTableData: .constant(selectedTableData), tableDataToEdit: selectedTableData)
     }
 }

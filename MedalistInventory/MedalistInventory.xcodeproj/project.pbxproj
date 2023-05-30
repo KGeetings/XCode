@@ -39,6 +39,7 @@
 		48ED613729F03FEB00C14F35 /* TableData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableData.swift; sourceTree = "<group>"; };
 		48ED613D29F6EA4F00C14F35 /* SheetMetalAddRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetMetalAddRow.swift; sourceTree = "<group>"; };
 		48ED613F29F7575D00C14F35 /* SheetMetalEditRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetMetalEditRow.swift; sourceTree = "<group>"; };
+		48EE746E2A0320EA000D5235 /* Medalist-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Medalist-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +56,7 @@
 		48649FAC29B5A1E000F6C29A = {
 			isa = PBXGroup;
 			children = (
+				48EE746E2A0320EA000D5235 /* Medalist-Info.plist */,
 				48649FB729B5A1E000F6C29A /* MedalistInventory */,
 				48649FB629B5A1E000F6C29A /* Products */,
 			);
@@ -78,11 +80,11 @@
 				48649FB829B5A1E000F6C29A /* MedalistInventoryApp.swift */,
 				48649FBA29B5A1E000F6C29A /* ContentView.swift */,
 				48649FC629B5A20E00F6C29A /* SheetMetalView.swift */,
+				48ED613D29F6EA4F00C14F35 /* SheetMetalAddRow.swift */,
 				48ED613F29F7575D00C14F35 /* SheetMetalEditRow.swift */,
+				4868837729D366A0003C2FFD /* ExtraPartsView.swift */,
 				48846E6D2A01C3D9004D52AA /* ExtraPartsAddRow.swift */,
 				48846E6F2A01C3EA004D52AA /* ExtraPartsEditRow.swift */,
-				48ED613D29F6EA4F00C14F35 /* SheetMetalAddRow.swift */,
-				4868837729D366A0003C2FFD /* ExtraPartsView.swift */,
 			);
 			path = MedalistInventory;
 			sourceTree = "<group>";
@@ -251,6 +253,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				"INFOPLIST_FILE[sdk=*]" = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -305,6 +308,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				"INFOPLIST_FILE[sdk=*]" = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -325,9 +329,9 @@
 				DEVELOPMENT_ASSET_PATHS = "\"MedalistInventory/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Medalist-Info.plist";
 				"INFOPLIST_FILE[sdk=*]" = "";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.business";
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
@@ -354,9 +358,9 @@
 				DEVELOPMENT_ASSET_PATHS = "\"MedalistInventory/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Medalist-Info.plist";
 				"INFOPLIST_FILE[sdk=*]" = "";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.business";
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
